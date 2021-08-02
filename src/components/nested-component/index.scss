@@ -1,0 +1,22 @@
+@import 'src/styles/common';
+
+.nested-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: get-color($primary, 500);
+  transition: .4s all ease;
+  width: 20rem;
+  height: 20rem;
+  cursor: pointer;
+  background: get-color($info, 300);
+  padding: 2rem;
+  box-sizing: border-box;
+
+  &_modified {
+    background: get-color($success, 500);
+    transition: .4s all ease;
+    color: get-color($text, 500);
+  }
+}

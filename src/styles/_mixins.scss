@@ -1,0 +1,57 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    //640px
+    @media (max-width: 40em) {
+      @content
+    }
+  };
+  @if $breakpoint == tab-port {
+    //767px
+    @media (max-width: 47.94em) {
+      @content
+    }
+  };
+  @if $breakpoint == small-tab {
+    //850px
+    @media (max-width: 53.12em) {
+      @content
+    }
+  };
+  @if $breakpoint == tab-land {
+    //1023px
+    @media (max-width: 63.94em) {
+      @content
+    }
+  };
+  @if $breakpoint == desktop {
+    //1280px
+    @media (max-width: 80em) {
+      @content
+    }
+  }
+  @if $breakpoint == big-desktop {
+    //1440px
+    @media (max-width: 90em) {
+      @content
+    }
+  }
+  @if $breakpoint == large-desktop {
+    //1440px
+    @media (min-width: 90em) {
+      @content
+    }
+  };
+}
+
+@mixin lineClamp ($lineQuantity) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: $lineQuantity;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-clamp: $lineQuantity;
+}

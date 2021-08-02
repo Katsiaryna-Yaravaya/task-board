@@ -1,0 +1,70 @@
+@import 'src/styles/common';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  min-width: 30rem;
+  min-height: 50rem;
+  border: 6px solid lightgray;
+  padding: 2rem 1rem;
+  border-radius: 5%;
+  margin: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.board__title {
+  font-weight: 700;
+}
+
+.item {
+  width: 100%;
+  border: 2px solid lightpink;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  cursor: grab;
+  background-color: #fcfcf9;
+}
+
+
+/*  & > * {
+    &:not(:last-child){
+      margin-bottom: 2rem;
+
+    }
+  }
+
+  .state-data {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+    &__text {
+      font-size: 2rem;
+      line-height: 1.25;
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .triggers > button:not(:first-child) {
+    margin-left: 1rem;
+  }
+}*/
