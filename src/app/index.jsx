@@ -6,11 +6,13 @@ import i18n from '../core/i18n'
 import { TestContext } from '../context'
 import { testActions } from '../redux/test/actions'*/
 
-import './index.scss'
-import Table from '../components/table-board'
 
 import {Switch, Route} from "react-router-dom"
+
+import './index.scss'
+
 import Registration from '../components/home/registration'
+import Table from '../components/table-board'
 
 const App = () => {
   /*
@@ -69,6 +71,7 @@ const App = () => {
 
       <Switch>
         <Route exact path="/" component={Registration}/>
+        <Route exact path="/table-board" component={Table}/>
       </Switch>
 
 

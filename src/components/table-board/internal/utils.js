@@ -1,3 +1,4 @@
+/*
 export const dragOverHandler = (e) => {
   e.preventDefault()
   if (e.target.className === 'item') {
@@ -53,4 +54,4 @@ export const dropCardHandler = (e, board) => {
     }))
   }
   e.target.style.boxShadow = 'none'
-}
+}*/
