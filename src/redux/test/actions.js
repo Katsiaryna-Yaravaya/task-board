@@ -1,31 +1,23 @@
-import { testService } from '../../servces/test'
-import { testActionTypes } from './types'
+import * as types from './types'
+import axios from 'axios'
 
-const updateTestData = payload => ({
-  type: testActionTypes.TEST_TYPE,
-  payload
+const getUsers = (users) => ({
+  type: types.GET_USERS,
+  payload: users
 })
 
-const getUsers = () => async (dispatch, getState) => {
-  console.log('getState', getState().test)
-  // const users = await axios.get('http://localhost:5000/users')
-  try {
-    const { data: users, status } = await testService.getUsers()
-    const response = await testService.getUsers()
-    console.log('response', response)
-    if (status !== 200) return
+const userAdded = () => ({
+  type: types.ADD_USER
+})
 
-    dispatch({
-      type: testActionTypes.SET_USERS,
-      payload: users
-    })
-    console.log(users)
-  } catch (e) {
-    console.log(e)
+export const addUser = (user) => {
+  return function(dispatch) {
+    axios
+      .post(`${process.env.REACT_APP_HOST}`, user)
+      .then((res) => {
+        console.log('resp', res)
+        dispatch(userAdded(res.data))
+      })
+      .catch(error => console.log(error))
   }
-}
-
-export const testActions = {
-  updateTestData,
-  getUsers
 }

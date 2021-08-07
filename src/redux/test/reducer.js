@@ -1,21 +1,31 @@
-import { testActionTypes } from './types'
+import { SET_IS_AUTHORISATION, testActionTypes } from './types'
+import * as types from './types'
+
 
 const INITIAL_STATE = {
   users: [],
-  user: {}
+  user: {},
+  loading: true,
+  isAuthorize: false,
 }
 
 const usersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case testActionTypes.TEST_TYPE:
+    case types.GET_USERS:
       return {
         ...state,
-        testData: action.payload
+        users: action.payload,
+        loading: false,
       }
-    case testActionTypes.SET_USERS:
+    case types.SET_IS_AUTHORISATION:
       return {
         ...state,
-        users: action.payload
+        isAuthorize: action.payload,
+      }
+    case types.ADD_USER:
+      return {
+        ...state,
+        loading: false,
       }
     default:
       return state
@@ -23,3 +33,17 @@ const usersReducer = (state = INITIAL_STATE, action) => {
 }
 
 export default usersReducer
+
+
+/*
+
+case testActionTypes.TEST_TYPE:
+return {
+  ...state,
+  testData: action.payload
+}
+case testActionTypes.SET_USERS:
+return {
+  ...state,
+  users: action.payload
+}*/
