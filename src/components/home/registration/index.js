@@ -1,59 +1,81 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getUsers, postUser } from '../../../backend/api'
+
+import { DATA_REGISTRATION_FORM } from '../../utils'
+import { getUser, postUser } from '../../../backend/api'
+import { saveUser } from '../../../redux/users/actions'
+import { TABLE_BOARD_ROUTE } from '../../../constants/routs'
+
+import RegistrationButton from './registration-button'
+import Credential from './credential'
 
 import './index.scss'
-import { v4 as uuidv4 } from 'uuid'
 
 const Registration = () => {
-
-  const [login, setLogin] = useState({
+  const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   })
-  const [isAuth, setIsAuth] = useState(null)
+  const [isAuthenticated, setIsAuthenticated] = useState(null)
+  const state = { button: 1 }
+
+  // TODO you can build useEffect with checking for user in the "user store"
 
   let history = useHistory()
+  const dispatch = useDispatch()
 
-  const routToBord = () => {
-    history.push('/table-board')
+  const createUser = () => {
+
+    if (!isAuthenticated) {
+      postUser(credentials).then(() => {
+        // TODO send request to check is user already exists, if does => throw error, if not => create new one
+
+        history.push(TABLE_BOARD_ROUTE)
+      })
+    }
   }
 
-  const createNewUser = useCallback(() => {
-    if (!isAuth) {
-      postUser({ ...login }).catch()
-    }
-  }, [isAuth, { ...login }])
-
-  const validator = ({email}) => {
-    const regExpValidEmail = /^\w+@\w+\.\w{2,}$/;
-    if (!regExpValidEmail.test(email)) {
-      alert('email не валиден')
-      return false
-    }
-    return true
+  const isEmailValid = ({ email }) => {
+    const regex = /^\w+@\w+\.\w{2,}$/
+    return regex.test(email)
   }
 
-  const handleSubmit = (e) => {
+  const isNotRequestValid = (statusText) => statusText !== 'OK'
+
+  const signIn = () => {
+    const { email } = credentials
+
+    getUser(email)
+      .then(({ data, statusText }) => {
+          if (isNotRequestValid(statusText)) return
+          const registeredUser = data[0]
+          setIsAuthenticated(!!registeredUser)
+          //TODO  alert('User is not found') => setError(e.message)
+          !!registeredUser ? history.push(TABLE_BOARD_ROUTE) : alert('User is not found')
+         dispatch(saveUser(registeredUser))
+        }
+      )
+  }
+  // TODO please change null to setError
+  const registration = () => {
+    isEmailValid(credentials) ? createUser() : console.log('error')
+  }
+
+  const handleSubmit = (e, name) => {
     e.preventDefault()
-    const isValid = validator({...login})
-    if (!isValid) {
-      return
+    if (name === 'Sign in') {
+      signIn()
     }
-    const { email, password } = login
-    getUsers().then(res => {
-        const isAuthorization = res.some(user => user.email === email && user.password === password)
-        setIsAuth(isAuthorization)
-      }
-    )
-    createNewUser()
-    routToBord()
+    if (name === 'registration') {
+      registration()
+    }
   }
 
   const handleChange = (event) => {
     let { name, value } = event.target
-    setLogin({
-      ...login,
+    setCredentials({
+      ...credentials,
       [name]: value
     })
   }
@@ -62,35 +84,35 @@ const Registration = () => {
     <div className='content'>
       <div className='box'>
         <h2 className='box__title'>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className='inputBox'>
-            <input
-              className='inputBox__userName'
-              type='text'
-              required
-              value={login.email}
-              name='email'
-              onChange={handleChange}
-            />
-            <label className='inputBox__wrapText'>e-mail</label>
-          </div>
-          <div className='inputBox'>
-            <input
-              className='inputBox__userName'
-              type='password'
-              required
-              value={login.password}
-              name='password'
-              onChange={handleChange}
-            />
-            <label className='inputBox__wrapText'>password</label>
-          </div>
-          <input
-            className='signIn'
-            type='submit'
-            name=''
-            value='Sign in'
-          />
+        <form>
+          {DATA_REGISTRATION_FORM.length > 0 && DATA_REGISTRATION_FORM.map((inputData, idx) => {
+            if (inputData.type === 'submit') {
+                return (
+                  <RegistrationButton
+                    key={idx}
+                    type={inputData.type}
+                    name={inputData.name}
+                    value={inputData.value}
+                    clickHandler={handleSubmit}
+                    className={inputData.className}
+                  />
+                )
+              }
+              return (
+                <Credential
+                  key={idx}
+                  type={inputData.type}
+                  name={inputData.name}
+                  value={credentials[inputData.value]}
+                  onChange={handleChange}
+                  className={inputData.className}
+                  autocomplete={inputData.autocomplete}
+                  label={inputData.label}
+                  required
+                />
+              )
+            }
+          )}
         </form>
       </div>
     </div>

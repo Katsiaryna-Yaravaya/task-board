@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import './index.scss'
+import { useSelector } from 'react-redux'
 
 const Table = () => {
 
@@ -9,6 +10,8 @@ const Table = () => {
     { id: 2, title: 'In progress', tasks: [{ id: 4, title: 'Be' }, { id: 5, title: 'Was' }, { id: 6, title: 'Been' }] },
     { id: 3, title: 'Done', tasks: [{ id: 7, title: 'Do' }, { id: 8, title: 'Did' }, { id: 9, title: 'Done' }] }
   ])
+
+  const user = useSelector(state => state.data.user)
 
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
@@ -56,7 +59,6 @@ const Table = () => {
     }
     e.target.style.boxShadow = 'none'
   }
-
   return (
     <div className='app'>
       {boards.map(board =>
@@ -87,20 +89,3 @@ const Table = () => {
 }
 
 export default Table
-
-
-{/*<div className="state-data">
-        <span className="state-data__text">{testContextData}</span>
-        <span className="state-data__text">{testData}</span>
-      </div>
-      <div className="triggers">
-        <button onClick={handleContextUpdate}>{t('updateContext')}</button>
-        <button onClick={handleReduxUpdate}>{t('updateRedux')}</button>
-      </div>
-      <button onClick={handleLanguageChange}>{t('changeLanguage')}</button>
-      <NestedComponent
-        updateNestedComponentState={handleClick}
-        stringData={text}
-        modified={modified}
-      />*/
-}

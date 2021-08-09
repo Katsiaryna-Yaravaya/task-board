@@ -4,7 +4,7 @@ import i18n from '../core/i18n'
 
 
 import { TestContext } from '../context'
-import { testActions } from '../redux/test/actions'*/
+import { testActions } from '../redux/users/actions'*/
 
 
 import {Switch, Route} from "react-router-dom"
@@ -23,7 +23,7 @@ const App = () => {
     })
     const { testContextData, setTestContextData } = useContext(TestContext)
     const dispatch = useDispatch()
-    const { testData } = useSelector(state => state.test)
+    const { testData } = useSelector(state => state.users)
 
     const { text, modified } = nestedComponentState
 
