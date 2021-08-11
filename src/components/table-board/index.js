@@ -11,7 +11,7 @@ const Table = () => {
     { id: 3, title: 'Done', tasks: [{ id: 7, title: 'Do' }, { id: 8, title: 'Did' }, { id: 9, title: 'Done' }] }
   ])
 
-  const user = useSelector(state => state.data.user)
+  // const user = useSelector(state => state.data.user)
 
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)

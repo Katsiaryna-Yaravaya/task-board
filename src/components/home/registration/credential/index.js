@@ -1,8 +1,8 @@
-import '../index.scss'
+import './index.scss'
 
 const Credential = ({ required, autocomplete, type, name, value, onChange, className, label }) => {
   return (
-    <div className='inputBox'>
+    <div className='input-box'>
       <input
         className={className}
         type={type}
@@ -12,7 +12,7 @@ const Credential = ({ required, autocomplete, type, name, value, onChange, class
         required={required}
         onChange={onChange}
       />
-      <label className='inputBox__wrapText'>{label}</label>
+      <label className='input-box__wrap-text'>{label}</label>
     </div>
   )
 }

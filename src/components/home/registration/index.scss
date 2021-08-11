@@ -26,55 +26,12 @@
   }
 }
 
-.inputBox {
-  position: relative;
-
-  &__userName {
-    width: 100%;
-    padding: 3.5% 0;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    color: #ffffff;
-    border: none;
-    outline: none;
-    background: transparent;
-    border-bottom: 1px solid #ffffff;
-  }
-
-  &__wrapText {
-    position: absolute;
-    color: #ffffff;
-    top: 0;
-    font-size: 2.5rem;
-    left: 0;
-    padding: 4.5% 0;
-    pointer-events: none;
-    transition: .5s;
-  }
-
-  &__userName:focus+.inputBox__wrapText {
-    top: -40%;
-    left: 0;
-    color: #DB7093;
-    font-size: 2rem;
-  }
-
-  &__userName:valid+.inputBox__wrapText {
-    top: -40%;
-    left: 0;
-    color: #DB7093;
-    font-size: 2rem;
-  }
-}
-
-.signIn {
-  margin: 0 2rem;
-  border: none;
-  outline: none;
-  color: #ffffff;
-  background: #DB7093;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 2rem;
-  padding: 4% 6%;
+.error-message{
+  color: red;
+  position: absolute;
+  bottom: 14rem;
+  font-size: 2.5rem;
+  left: 14rem;
+  background: inherit;
+  text-shadow: 2px 2px 5px midnightblue;
 }

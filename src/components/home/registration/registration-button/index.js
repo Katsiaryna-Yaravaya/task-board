@@ -1,4 +1,4 @@
-import '../index.scss'
+import './index.scss'
 
 const RegistrationButton = ({ type, name, value, className, clickHandler }) => {
 
