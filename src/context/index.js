@@ -1,1 +1,1 @@
-export { TestContext, TestState } from './test'
+export { ThemeContext, ThemeState } from './theme'

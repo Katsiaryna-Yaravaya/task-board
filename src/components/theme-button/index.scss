@@ -1,0 +1,30 @@
+.theme-choose {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme__button {
+  cursor: pointer;
+  margin-bottom: 1rem;
+  height: 4rem;
+  width: 8rem;
+  border-radius: 8px;
+}
+
+.button-theme-light {
+  border: 1px solid lightpink;
+  background: linear-gradient(90deg, #cfecd0, #ffc5ca);
+  color: chocolate;
+}
+
+.button-theme-dark {
+  border: 1px solid blue;
+  background: linear-gradient(3deg, #e6d16c, #16014c);
+  color: darkblue;
+}
+
+.button-theme-neutral {
+  border: 1px solid chocolate;
+  background-image: linear-gradient(315deg, #f5d3c8 0%, #c08552 74%);
+  color: brown;
+}

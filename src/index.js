@@ -4,9 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 
 import store from './redux/store'
-// import './core/i18n'
-
-import { TestState } from './context'
+import { ThemeState } from './context'
 
 import App from './app'
 
@@ -15,9 +13,9 @@ import './index.scss'
 ReactDOM.render(
   <Router>
     <ReduxProvider store={store}>
-      <TestState>
+      <ThemeState>
         <App />
-      </TestState>
+      </ThemeState>
     </ReduxProvider>
   </Router>,
   document.getElementById('root')

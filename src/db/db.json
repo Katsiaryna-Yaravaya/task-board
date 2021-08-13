@@ -3,7 +3,8 @@
     {
       "id": 11,
       "email": "kate123@mail.ru",
-      "password": "kate1234",
+      "password": "kate1234",,
+      "mount": null,
       "boards": [
         {
           "id": "12312312",
@@ -37,7 +38,8 @@
     {
       "id": 12,
       "email": "1111",
-      "password": "1111",
+      "password": "1111",,
+      "mount": null,
       "boards": [
         {
           "id": "1",
@@ -65,22 +67,32 @@
     {
       "id": "f950487f-71eb-4daa-9700-70efc9413bd6",
       "email": "vfggggdd@mail.com",
-      "password": "vsjfsvrnsrdfj"
+      "password": "vsjfsvrnsrdfj",
+      "mount": null
     },
     {
       "id": "a2c8a348-e71b-4d07-b9d2-43d8b76072cf",
       "email": "vlkdfmvlkdf@mail.ru",
-      "password": "vmdf vkdfvk"
+      "password": "vmdf vkdfvk",
+      "mount": null
     },
     {
       "id": "3543b496-9cd9-4053-868f-834a1bc5fe41",
       "email": "lkfvldvl@mail.ru",
-      "password": "jfkdcenalk"
+      "password": "jfkdcenalk",
+      "mount": null
     },
     {
       "id": "59209564-855b-4ee4-8876-8c71412dfe3e",
       "email": "jnhfuyebvh@mail.ru",
-      "password": "qwert"
+      "password": "qwert",
+      "mount": null
+    },
+    {
+      "id": "55e450b9-36e0-44e4-823e-a2e23e622934",
+      "email": "bsxhb@mailk.com",
+      "password": "asdf",
+      "mount": null
     }
   ]
 }

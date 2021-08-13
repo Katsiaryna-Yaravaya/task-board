@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+
+import { useTheme } from '../../context/theme/theme-state'
+import ThemeBackground from '../theme-background'
+import Modal from '../modal'
+import Tasks from './tasks'
 
 import './index.scss'
-import { useSelector } from 'react-redux'
 
 const Table = () => {
 
@@ -15,12 +20,12 @@ const Table = () => {
 
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const theme = useTheme()
 
   const dragOverHandler = (e) => {
     e.preventDefault()
-    if (e.target.className === 'item') {
-      e.target.style.boxShadow = '0 4px 3px gray'
-    }
+    if (e.target.className === 'item') e.target.style.boxShadow = '0 4px 3px gray'
   }
   const dragLeaveHandler = (e) => {
     e.target.style.boxShadow = 'none'
@@ -59,32 +64,42 @@ const Table = () => {
     }
     e.target.style.boxShadow = 'none'
   }
+
+  const handleOpenModal = () => {
+    setIsOpenModal(true)
+  }
+  const handleCloseModal = () => {
+    setIsOpenModal(false)
+  }
+
   return (
-    <div className='app'>
-      {boards.map(board =>
-        <div
-          onDragOver={(e) => dragOverHandler(e)}
-          onDrop={(e) => dropCardHandler(e, board)}
-          className='board'
-        >
-          <div className='board__title'>{board.title}</div>
-          {board.tasks.map(task => {
-              return <div
+    <>
+      <ThemeBackground openModal={handleOpenModal} />
+      <div className='app' style={theme.theme}>
+        {boards.map(board =>
+          <div
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropCardHandler(e, board)}
+            className='board'
+            key={board.id}
+          >
+            <div className='board__title'>{board.title}</div>
+            {board.tasks.map((task) => {
+              return <Tasks
                 onDragOver={(e) => dragOverHandler(e)}
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, board, task)}
                 onDragEnd={(e) => dragEndHandler(e)}
                 onDrop={(e) => dropHandler(e, board, task)}
-                draggable={true}
-                className='item'
-              >
-                {task.title}
-              </div>
-            }
-          )}
-        </div>
-      )}
-    </div>
+                key={task.id}
+                task={task.title}
+              />
+            })}
+          </div>
+        )}
+        <Modal show={isOpenModal} closeModal={handleCloseModal} />
+      </div>
+    </>
   )
 }
 

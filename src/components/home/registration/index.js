@@ -15,7 +15,8 @@ import './index.scss'
 const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
-    password: ''
+    password: '',
+    mount: null
   })
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)

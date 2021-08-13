@@ -6,13 +6,13 @@ import i18n from '../core/i18n'
 import { TestContext } from '../context'
 import { testActions } from '../redux/users/actions'*/
 
-
+import { useContext } from 'react'
 import {Switch, Route} from "react-router-dom"
-
-import './index.scss'
 
 import Registration from '../components/home/registration'
 import Table from '../components/table-board'
+
+import './index.scss'
 
 const App = () => {
   /*
@@ -21,7 +21,6 @@ const App = () => {
       text: 'string data',
       modified: false
     })
-    const { testContextData, setTestContextData } = useContext(TestContext)
     const dispatch = useDispatch()
     const { testData } = useSelector(state => state.users)
 
@@ -49,6 +48,7 @@ const App = () => {
   */
 
 
+
   return (
     <div className='app'>
       {/*<div className="state-data">
@@ -73,9 +73,6 @@ const App = () => {
         <Route exact path="/" component={Registration}/>
         <Route exact path="/table-board" component={Table}/>
       </Switch>
-
-
-      {/*<Table />*/}
     </div>
   )
 }
