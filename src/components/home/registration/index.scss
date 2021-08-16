@@ -1,37 +1,30 @@
 @import 'src/styles/common';
 
 .content {
-  width: 100vw;
-  height: 100vh;
+  @include size(100vh, 100vw);
   background: url(./bg.jpg);
   background-size: cover;
 }
 
 .box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  @include positionBlock(absolute, 50%, null, null, 50%);
+  @include size(null, 40%);
+  @include indent(6%);
+  @include changeColor(null, rgba(0, 0, 0, .5), null);
+  @include fontBorder(null, 4%);
   transform: translate(-50%, -50%);
-  width: 40%;
-  padding: 6%;
-  background: rgba(0, 0, 0, .5);
-  border-radius: 4%;
 
   &__title {
-    margin: 0 0 8%;
-    padding: 0;
-    font-size: 6rem;
-    color: #ffffff;
+    @include indent(0, 0 0 8%);
+    @include fontBorder(6rem);
+    @include changeColor(null, null, $white);
     text-align: center;
   }
 }
 
-.error-message{
-  color: red;
-  position: absolute;
-  bottom: 14rem;
-  font-size: 2.5rem;
-  left: 14rem;
-  background: inherit;
-  text-shadow: 2px 2px 5px midnightblue;
+.error-message {
+  @include positionBlock(absolute, null, null, 14rem, 14rem);
+  @include changeColor(null, inheri, $red);
+  @include fontBorder(2.5rem);
+  text-shadow: 2px 2px 5px $midnightBlue;
 }

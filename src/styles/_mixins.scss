@@ -43,7 +43,7 @@
   };
 }
 
-@mixin lineClamp ($lineQuantity) {
+@mixin lineClamp($lineQuantity) {
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -54,4 +54,44 @@
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   line-clamp: $lineQuantity;
+}
+
+@mixin flexBlock($dp: flex, $ali: center, $jk: center) {
+  display: $dp;
+  align-items: $ali;
+  justify-content: $jk;
+}
+
+@mixin size($hg: null, $wd: null) {
+  height: $hg;
+  width: $wd;
+}
+
+@mixin indent($pd: 0, $mg: 0) {
+  padding: $pd;
+  margin: $mg;
+}
+
+@mixin positionBlock($pz: absolut, $top: null, $rg: null, $bt: null, $lf: null) {
+  position: $pz;
+  top: $top;
+  right: $rg;
+  bottom: $bt;
+  left: $lf;
+}
+
+@mixin changeColor($bd: null, $bg: null, $cl: null) {
+  border: $bd;
+  background: $bg;
+  color: $cl;
+}
+
+@mixin fontBorder($fz, $br: null) {
+  font-size: $fz;
+  border-radius: $br;
+}
+
+@mixin focus($cr: pointer, $ou: null) {
+  cursor: $cr;
+  outline: $ou;
 }

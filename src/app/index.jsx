@@ -1,12 +1,9 @@
-/*import { useDispatch, useSelector } from 'react-redux'
+/*
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import i18n from '../core/i18n'
+*/
 
-
-import { TestContext } from '../context'
-import { testActions } from '../redux/users/actions'*/
-
-import { useContext } from 'react'
 import {Switch, Route} from "react-router-dom"
 
 import Registration from '../components/home/registration'

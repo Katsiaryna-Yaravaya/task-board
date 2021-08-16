@@ -1,3 +1,5 @@
+import './index.scss'
+
 const Tasks = ({ onDragOver, onDragLeave, onDragStart, onDragEnd, onDrop, task }) => {
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useTheme } from '../../context/theme/theme-state'
@@ -16,11 +16,14 @@ const Table = () => {
     { id: 3, title: 'Done', tasks: [{ id: 7, title: 'Do' }, { id: 8, title: 'Did' }, { id: 9, title: 'Done' }] }
   ])
 
-  // const user = useSelector(state => state.data.user)
+  const user = useSelector(state => state.data.user)
+  // console.log('user', user)
 
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
-  const [isOpenModal, setIsOpenModal] = useState(false)
+  const [isOpenModalInfo, setIsOpenModalInfo] = useState(false)
+  const [isOpenModalPayment, setIsOpenModalPayment] = useState(false)
+  const [password, setPassword] = useState(null)
   const theme = useTheme()
 
   const dragOverHandler = (e) => {
@@ -66,10 +69,21 @@ const Table = () => {
   }
 
   const handleOpenModal = () => {
-    setIsOpenModal(true)
+    setIsOpenModalInfo(true);
   }
-  const handleCloseModal = () => {
-    setIsOpenModal(false)
+  const handlePayment = () => {
+    setIsOpenModalInfo(false);
+    setIsOpenModalPayment(true);
+  }
+  const handleCancel = () => {
+    setIsOpenModalPayment(false);
+    setIsOpenModalInfo(false);
+  }
+  const handleSubmit = () =>{
+    setIsOpenModalPayment(false);
+  }
+  const handleChange =(event) => {
+    setPassword(event.target.value)
   }
 
   return (
@@ -97,7 +111,22 @@ const Table = () => {
             })}
           </div>
         )}
-        <Modal show={isOpenModal} closeModal={handleCloseModal} />
+        <Modal
+          title={'Pay for your new theme'}
+          body={'Only ONE dollar and this topic is yours!'}
+          show={isOpenModalInfo}
+          onClickPayment={handlePayment}
+          onClickCancel={handleCancel}
+        />
+        <Modal
+          title={'Confirm the payment by entering the correct password'}
+          body={<input onChange={handleChange} className='body__input'/>}
+          password={password}
+          btnSubmitTitle={'submit'}
+          show={isOpenModalPayment}
+          onClickSubmit={handleSubmit}
+          onClickCancel={handleCancel}
+        />
       </div>
     </>
   )

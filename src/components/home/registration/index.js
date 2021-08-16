@@ -16,7 +16,7 @@ const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    mount: null
+    amount: null
   })
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)

@@ -1,42 +1,10 @@
 @import 'src/styles/common';
 
 * {
-  padding: 0;
-  margin: 0;
+  @include indent();
   box-sizing: border-box;
-
 }
-
 .app {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include size(100vh, 100vw);
+  @include flexBlock();
 }
-/*  & > * {
-    &:not(:last-child){
-      margin-bottom: 2rem;
-
-    }
-  }
-
-  .state-data {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-
-    &__text {
-      font-size: 2rem;
-      line-height: 1.25;
-    }
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  .triggers > button:not(:first-child) {
-    margin-left: 1rem;
-  }
-}*/

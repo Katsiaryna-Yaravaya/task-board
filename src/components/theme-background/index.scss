@@ -1,17 +1,14 @@
-.dropdown{
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-  display: grid;
+@import 'src/styles/common';
+
+.dropdown {
+  @include positionBlock(absolute, 4rem, null, null, 4rem);
+  @include flexBlock(grid, null, null);
 
   &__button {
-    background: linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706);
-    border: none;
-    color: darkblue;
-    cursor: pointer;
+    @include size(4rem, 8rem);
+    @include fontBorder(null, 8px);
+    @include changeColor(none, linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706), $darkBlue);
+    @include focus();
     margin-bottom: 1rem;
-    height: 4rem;
-    width: 8rem;
-    border-radius: 8px;
   }
 }

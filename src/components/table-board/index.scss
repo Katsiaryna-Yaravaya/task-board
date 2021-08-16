@@ -1,29 +1,15 @@
 @import 'src/styles/common';
 
 .board {
+  @include flexBlock(flex, center, null);
+  @include indent(2rem 1rem, 2rem);
+  @include changeColor(6px solid $lightGrey);
+  @include fontBorder(null, 5%);
   min-width: 30rem;
   min-height: 50rem;
-  border: 6px solid lightgray;
-  padding: 2rem 1rem;
-  border-radius: 5%;
-  margin: 2rem;
-  display: flex;
-  align-items: center;
   flex-direction: column;
+
+  &__title {
+    font-weight: 700;
+  }
 }
-
-.board__title {
-  font-weight: 700;
-}
-
-.item {
-  width: 100%;
-  border: 2px solid lightpink;
-  padding: 1rem;
-  border-radius: 6px;
-  margin: 0.5rem 0;
-  cursor: grab;
-  background-color: #fcfcf9;
-}
-
-

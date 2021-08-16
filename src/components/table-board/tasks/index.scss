@@ -1,0 +1,9 @@
+@import 'src/styles/common';
+
+.item {
+  @include size(null, 100%);
+  @include indent(1rem, 0.5rem 0);
+  @include changeColor(2px solid lightpink, $darkWhite);
+  @include fontBorder(null, 6px);
+  @include focus(grab);
+}

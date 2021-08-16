@@ -1,52 +1,53 @@
+@import 'src/styles/common';
+
 .modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #483224;
+  @include flexBlock();
+  @include positionBlock(fixed, 0, 0, 0, 0);
+  @include changeColor(null, rgba(0, 0, 0, 0.2), $chocolate);
 }
 
 .modal-content {
-  width: 48rem;
-  background-color: #e2d0c3;
-}
+  @include size(null, 48rem);
+  @include changeColor(null, $lightGrey);
 
-.modal__header{
-  padding: 10px;
-  text-align: center;
-}
+  .modal__header {
+    @include indent(10px);
+    text-align: center;
 
-.modal__body {
-  padding: 10px;
-  border-top: 1px solid #7c573d;
-  border-bottom: 1px solid #7c573d;
-  height: 11rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: 2.5rem;
-  justify-content: center;
-}
+    .header__title {
+      @include fontBorder(2.2rem);
+    }
+  }
 
-.header__title {
-  font-size: 2.2rem;
-}
+  .modal__body {
+    @include flexBlock(flex, null, center);
+    @include size(11rem);
+    @include indent(10px);
+    @include fontBorder(2.5rem);
+    border-top: 1px solid $milkChocolate;
+    border-bottom: 1px solid $milkChocolate;
+    text-align: center;
+    flex-direction: column;
 
-.modal__footer {
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-}
+    .body__input {
+      @include size(4rem, 31rem);
+      @include indent(null, auto);
+      @include fontBorder(2rem, 10px);
+      @include changeColor(1px solid $brown, null, $chocolate);
+      @include focus(null, none);
+      padding-left: 2rem;
+    }
+  }
 
-.footer__button {
-  cursor: pointer;
-  height: 4rem;
-  width: 8rem;
-  border-radius: 10px;
-  border: 1px solid brown;
+  .modal__footer {
+    @include indent(10px);
+    @include flexBlock(flex, null, space-around);
+
+    .footer__button {
+      @include size(4rem, 8rem);
+      @include fontBorder(null, 10px);
+      @include changeColor(1px solid $brown);
+      @include focus();
+    }
+  }
 }

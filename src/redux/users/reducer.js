@@ -11,6 +11,14 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         ...state,
         user: action.payload
       }
+    case types.userActionTypes.ONE_PAYMENT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          amount: state.user.amount-1
+        }
+      }
     default:
       return state
   }
