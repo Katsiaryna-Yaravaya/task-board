@@ -1,5 +1,4 @@
 /*
-import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import i18n from '../core/i18n'
 */
@@ -8,6 +7,7 @@ import {Switch, Route} from "react-router-dom"
 
 import Registration from '../components/home/registration'
 import Table from '../components/table-board'
+import ExpandedTask from '../components/expanded-task'
 
 import './index.scss'
 
@@ -45,7 +45,6 @@ const App = () => {
   */
 
 
-
   return (
     <div className='app'>
       {/*<div className="state-data">
@@ -69,6 +68,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Registration}/>
         <Route exact path="/table-board" component={Table}/>
+        <Route exact path="/table-board/task" component={ExpandedTask}/>
       </Switch>
     </div>
   )

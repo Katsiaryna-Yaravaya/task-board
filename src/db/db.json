@@ -24,12 +24,16 @@
             {
               "id": "2",
               "title": "In progress",
-              "tasks": []
+              "tasks": [
+                {}
+              ]
             },
             {
               "id": "3",
               "title": "Done",
-              "tasks": []
+              "tasks": [
+                {}
+              ]
             }
           ]
         }
@@ -37,74 +41,79 @@
     },
     {
       "id": 12,
-      "email": "1111",
+      "email": "1111@mail.com",
       "password": "1111",
       "amount": null,
       "boards": [
         {
-          "id": "1",
-          "title": "Do in",
+          "id": 1,
+          "title": "Do It",
           "tasks": [
             {
-              "id": "4",
-              "name": "Apple",
-              "description": "Apple Inc. is an American multinational technology company headquartered in Cupertino, California that designs, develops, and sells consumer electronics, computer software, and online services. ... Its online services include the iTunes Store, the iOS App Store and Mac App Store, Apple Music, and iCloud"
+              "id": 123,
+              "title": "Go"
+            },
+            {
+              "id": 213,
+              "title": "Went"
+            },
+            {
+              "id": 321,
+              "title": "Gone"
             }
           ]
         },
         {
-          "id": "2",
+          "id": 2,
           "title": "In progress",
-          "tasks": []
+          "tasks": [
+            {
+              "id": 452,
+              "title": "iuj6tf7rujt"
+            },
+            {
+              "id": 52547,
+              "title": "Whtdfghbent"
+            },
+            {
+              "id": 625748,
+              "title": "Ggfhbgfone"
+            }
+          ]
         },
         {
-          "id": "3",
+          "id": 3,
           "title": "Done",
-          "tasks": []
+          "tasks": [
+            {
+              "id": 727548,
+              "title": "ujuj"
+            },
+            {
+              "id": 82754,
+              "title": "hy"
+            },
+            {
+              "id": 92758,
+              "title": "Gofghne"
+            }
+          ]
         }
       ]
     },
     {
-      "id": "f950487f-71eb-4daa-9700-70efc9413bd6",
-      "email": "vfggggdd@mail.com",
-      "password": "vsjfsvrnsrdfj",
-      "amount": null
-    },
-    {
-      "id": "a2c8a348-e71b-4d07-b9d2-43d8b76072cf",
-      "email": "vlkdfmvlkdf@mail.ru",
-      "password": "vmdf vkdfvk",
-      "amount": null
-    },
-    {
-      "id": "3543b496-9cd9-4053-868f-834a1bc5fe41",
-      "email": "lkfvldvl@mail.ru",
-      "password": "jfkdcenalk",
-      "amount": null
-    },
-    {
-      "id": "59209564-855b-4ee4-8876-8c71412dfe3e",
-      "email": "jnhfuyebvh@mail.ru",
+      "id": "6cba7925-5dda-412b-a2a1-69ba2464a3bf",
+      "email": "r4f@mail.com",
       "password": "qwert",
-      "amount": null
+      "amount": 10,
+      "boards": []
     },
     {
-      "id": "55e450b9-36e0-44e4-823e-a2e23e622934",
-      "email": "bsxhb@mailk.com",
-      "password": "asdf",
-      "amount": null
-    },
-    {
-      "id": "df4acd25-d15f-4d51-abeb-c62cf139bcc2",
-      "email": "gedt@mail.com",
-      "password": "qazxs",
-      "amount": null
-    },
-    {
-      "id": "df4acd25-d15f-4d51-abeb-c62cf139bcc2",
-      "email": "1111@mail.com",
-      "password": "1111",
-      "amount": 10
+      "id": "be3932c7-4ff2-4403-b0ac-76a9d9f2ac89",
+      "email": "tdje@mail.com",
+      "password": "dtgfmnjghnj",
+      "amount": null,
+      "boards": []
     }
   ]
 }

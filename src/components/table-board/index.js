@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useTheme } from '../../context/theme/theme-state'
@@ -6,40 +6,41 @@ import ThemeBackground from '../theme-background'
 import Modal from '../modal'
 import Tasks from './tasks'
 
+import { modalTypeConstants } from '../../constants/modal'
+
 import './index.scss'
+import AddTask from '../add-task'
+import { EXPANDED_TASK_ROUTE } from '../../constants/routs'
 
 const Table = () => {
-
-  const [boards, setBoards] = useState([
-    { id: 1, title: 'Do It', tasks: [{ id: 1, title: 'Go' }, { id: 2, title: 'Went' }, { id: 3, title: 'Gone' }] },
-    { id: 2, title: 'In progress', tasks: [{ id: 4, title: 'Be' }, { id: 5, title: 'Was' }, { id: 6, title: 'Been' }] },
-    { id: 3, title: 'Done', tasks: [{ id: 7, title: 'Do' }, { id: 8, title: 'Did' }, { id: 9, title: 'Done' }] }
-  ])
-
-  const user = useSelector(state => state.data.user)
-  // console.log('user', user)
-
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
-  const [isOpenModalInfo, setIsOpenModalInfo] = useState(false)
-  const [isOpenModalPayment, setIsOpenModalPayment] = useState(false)
+  const [isModalInfoVisible, setIsModalInfoVisible] = useState(false)
+  const [isModalPaymentVisible, setIsModalPaymentVisible] = useState(false)
   const [password, setPassword] = useState(null)
   const theme = useTheme()
+
+  const { PAYMENT, CONFIRM } = modalTypeConstants
+
+  const user = useSelector(state => state.data.user)
+  const [boards, setBoards] = useState(null)
+
+  useEffect(() => {
+    if (user) {
+      setBoards(user.boards)
+    }
+  }, [user, user.boards])
 
   const dragOverHandler = (e) => {
     e.preventDefault()
     if (e.target.className === 'item') e.target.style.boxShadow = '0 4px 3px gray'
   }
-  const dragLeaveHandler = (e) => {
-    e.target.style.boxShadow = 'none'
-  }
+  const dragLeaveHandler = (e) => e.target.style.boxShadow = 'none'
   const dragStartHandler = (e, board, item) => {
     setCurrentBoard(board)
     setCurrentItem(item)
   }
-  const dragEndHandler = (e) => {
-    e.target.style.boxShadow = 'none'
-  }
+  const dragEndHandler = (e) => e.target.style.boxShadow = 'none'
   const dropHandler = (e, board, item) => {
     e.preventDefault()
     const currentIndex = currentBoard.tasks.indexOf(currentItem)
@@ -68,29 +69,24 @@ const Table = () => {
     e.target.style.boxShadow = 'none'
   }
 
-  const handleOpenModal = () => {
-    setIsOpenModalInfo(true);
-  }
+  const handleOpenModal = () => setIsModalInfoVisible(true)
   const handlePayment = () => {
-    setIsOpenModalInfo(false);
-    setIsOpenModalPayment(true);
+    setIsModalInfoVisible(false)
+    setIsModalPaymentVisible(true)
   }
   const handleCancel = () => {
-    setIsOpenModalPayment(false);
-    setIsOpenModalInfo(false);
+    setIsModalPaymentVisible(false)
+    setIsModalInfoVisible(false)
   }
-  const handleSubmit = () =>{
-    setIsOpenModalPayment(false);
-  }
-  const handleChange =(event) => {
-    setPassword(event.target.value)
-  }
+  const handleSubmit = () => setIsModalPaymentVisible(false)
+  const handleChange = (e) => setPassword(e.target.value)
 
   return (
     <>
       <ThemeBackground openModal={handleOpenModal} />
+      <AddTask />
       <div className='app' style={theme.theme}>
-        {boards.map(board =>
+        {boards ? boards.map(board =>
           <div
             onDragOver={(e) => dragOverHandler(e)}
             onDrop={(e) => dropCardHandler(e, board)}
@@ -98,8 +94,7 @@ const Table = () => {
             key={board.id}
           >
             <div className='board__title'>{board.title}</div>
-            {board.tasks.map((task) => {
-              return <Tasks
+            {board.tasks.map((task) => <Tasks
                 onDragOver={(e) => dragOverHandler(e)}
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, board, task)}
@@ -108,25 +103,31 @@ const Table = () => {
                 key={task.id}
                 task={task.title}
               />
-            })}
+            )}
           </div>
-        )}
-        <Modal
-          title={'Pay for your new theme'}
-          body={'Only ONE dollar and this topic is yours!'}
-          show={isOpenModalInfo}
-          onClickPayment={handlePayment}
-          onClickCancel={handleCancel}
-        />
-        <Modal
-          title={'Confirm the payment by entering the correct password'}
-          body={<input onChange={handleChange} className='body__input'/>}
-          password={password}
-          btnSubmitTitle={'submit'}
-          show={isOpenModalPayment}
-          onClickSubmit={handleSubmit}
-          onClickCancel={handleCancel}
-        />
+        ) : null}
+        {
+          isModalInfoVisible ?
+            <Modal
+              title={'Pay for your new theme'}
+              type={CONFIRM}
+              body={'Only ONE dollar and this topic is yours!'}
+              onClickCancel={handleCancel}
+              handlePayment={handlePayment}
+            /> : null
+        }
+        {
+          isModalPaymentVisible ?
+            <Modal
+              title={'Confirm the payment by entering the correct password'}
+              type={PAYMENT}
+              body={<input onChange={handleChange} className='body__input' />}
+              password={password}
+              btnSubmitTitle={'submit'}
+              onClickSubmit={handleSubmit}
+              onClickCancel={handleCancel}
+            /> : null
+        }
       </div>
     </>
   )

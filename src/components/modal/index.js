@@ -1,53 +1,47 @@
-import React, { Component } from 'react'
-import ThemeContext from '../../context/theme/theme-context'
-import './index.scss'
+import { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../../redux/store'
-import { putUser } from '../../backend/api'
+
+import ThemeContext from '../../context/theme/theme-context'
+import { modalTypeConstants } from '../../constants/modal'
+import { updateUsersAmount } from '../../backend/api'
+
+import './index.scss'
+// import store from '../../redux/store'
 
 class Modal extends Component {
-
   static contextType = ThemeContext
 
   state = {
+    // user: this.props.user,
     error: ''
   }
-
   // componentDidMount() {
   //   this.setState({
   //     ...this.state,
   //     user: this.props.user
   //   })
   // }
-
-  /*
-     componentDidUpdate() {
-       let value = this.context;
-       /!* ... *!/
-     }
-
-   */
-
+  // componentDidUpdate() {
+  //     console.log('componentDidUpdate')
+  // }
   // componentWillUnmount() {
   //   console.log('componentWillUnmount')
   // }
 
-  handlePayment = () => {
-    this.props.onClickPayment()
-  }
-
   handleSubmit = () => {
-    if (this.props.password === this.props.user.password) {
-      this.props.onClickSubmit()
-      this.props.onePayment()
-    } else {
-      this.setState({
-        ...this.state,
-        error: 'password not correct'
-      })
-    }
+    const {password, user, onClickSubmit, oneDollarPayment} = this.props
+    if (password === user.password) {
+      onClickSubmit()
+      oneDollarPayment()
+    } else this.setState({ error: 'password not correct' })
+
     // достать юзера и провести оплату по правильно введённому паролю
   }
+
+    handleUserAmountUpdate = () => {
+      // console.log('user', this.props.user)
+      // this.props.updateUserAmount(this.props.user.id, {amount: 20})
+    }
 
   handleCancel = () => {
     this.props.onClickCancel()
@@ -55,55 +49,56 @@ class Modal extends Component {
   }
 
   render() {
-    if (!this.props.show) {
-      return null
-    }
+    const { title, body, handlePayment, btnSubmitTitle = 'payment', type } = this.props
+    const { error } = this.state
+
+    const isConfirmType = type === modalTypeConstants.CONFIRM
+
+    const handlePay = () => isConfirmType ? handlePayment() : this.handleSubmit()
 
     return (
-      <div className='modal'>
-        <div className='modal-content' onClick={e => e.stopPropagation()}>
+      <div className='modal' onClick={this.handleUserAmountUpdate}>
+        <div className='modal-content'>
 
-          {this.props.title && (
+          {title ? (
             <div className='modal__header'>
               <h4 className='header__title'>
-                {this.props.title}
+                {title}
               </h4>
             </div>
-          )}
+          ) : null}
 
-          {this.props.body && (
+          {body ? (
             <div className='modal__body'>
-              {this.props.body}
+              {body}
             </div>
-          )}
+          ) : null}
 
+          {/*<div className='modal-footer'>*/}
           <div className='modal__footer'>
             <button
+              // className='modal-footer__button'
               className='footer__button'
-              onClick={e => this.props.onClickPayment ? this.handlePayment() : this.handleSubmit()}
+              onClick={() => handlePay()}
             >
-              {this.props.btnSubmitTitle ? this.props.btnSubmitTitle : 'payment'}
+              {btnSubmitTitle}
             </button>
-            <button className='footer__button' onClick={this.handleCancel}>cancel</button>
+            <button className='footer__button' onClick={() => this.handleCancel()}>cancel</button>
           </div>
-          {this.state.error}
+          {error}
         </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.data.user
-  }
-}
+const mapStateToProps = ({ data: { user } }) => ({
+  user
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // user: (id) => dispatch(putUser(id)),
-    onePayment: () => dispatch({ type: 'ONE_PAYMENT' })
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  // updateUserAmount: (id, data) => dispatch(updateUsersAmount(id, data)),
+  oneDollarPayment: () => dispatch({ type: 'ONE_DOLLAR_PAYMENT' })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal)

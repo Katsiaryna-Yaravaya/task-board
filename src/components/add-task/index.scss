@@ -1,0 +1,19 @@
+@import 'src/styles/common';
+
+.form-bord {
+  @include positionBlock(absolute, 5rem);
+
+  &__todo {
+    @include indent(1rem);
+    @include changeColor(2px solid $lightPink, $darkWhite);
+    @include fontBorder(null, 6px);
+    @include focus(null, none);
+  }
+
+  &__button {
+    @include indent(1rem, 0 0 0 2.5rem);
+    @include changeColor(2px solid $lightPink, $lightLavanda, $milkChocolate);
+    @include fontBorder(null, 6px);
+    @include focus();
+  }
+}

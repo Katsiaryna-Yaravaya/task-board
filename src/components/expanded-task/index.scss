@@ -1,0 +1,68 @@
+@import '../../styles/common';
+
+.task {
+  @include positionBlock(absolute, 3rem, null, null, 5rem);
+  border: 1px solid $deepSkyBlue ;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+
+  &__title {
+    font-size: 8rem;
+    text-align: center;
+  }
+
+  &__edit {
+    margin: 4rem 0;
+    font-size: 2.4rem;
+    padding: 1rem;
+    width: 40rem;
+    height: 16rem;
+    border: 2px solid $lightPink;
+    outline: none;
+    resize: none;
+    overflow: overlay;
+    border-radius: 10px;
+  }
+
+  &__description {
+    font-size: 2.5rem;
+    word-wrap: break-word;
+    padding: 0 2rem;
+    width: 40rem;
+  }
+
+  .task-block-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 3rem 0;
+
+    &__change {
+      background: $lavanda;
+      box-shadow: 0px 0px 49px 30px rgba(222, 169, 241, 1);
+      border: none;
+    }
+
+    &__delete {
+      background: $red;
+      box-shadow:0 0 41px 17px rgba(255, 0, 0, 0.72);
+      border: none;
+    }
+
+    &__download {
+      background: $lightBlue;
+      box-shadow: 0 0 41px 17px rgba(98, 145, 240, 0.72);
+      border: none;
+    }
+
+    .task-button {
+      height: 8rem;
+      width: 8rem;
+      border-radius: 50%;
+
+      &__img {
+        height: 6rem;
+        width: 6rem;
+      }
+    }
+  }
+}

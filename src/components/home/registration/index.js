@@ -16,7 +16,8 @@ const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    amount: null
+    amount: null,
+    boards: []
   })
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)
@@ -45,6 +46,7 @@ const Registration = () => {
       })
       if (credentialsError) return
       postUser(credentials).then(() => {
+        dispatch(saveUser(credentials))
         history.push(TABLE_BOARD_ROUTE)
       })
     }
@@ -58,8 +60,13 @@ const Registration = () => {
   const signIn = () => {
     getUser(email)
       .then(({ data, statusText }) => {
-
         if (IS_NOT_REQUEST_VALID(statusText)) return
+
+        if (data.length === 0) {
+          setCredentialsError('User not exist')
+          return
+        }
+
         data[0].password = decodedUserCredentials.password
         const registeredUser = data[0]
         setIsAuthenticated(!!registeredUser)
