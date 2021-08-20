@@ -8,3 +8,15 @@
   @include size(100vh, 100vw);
   @include flexBlock();
 }
+
+.language {
+  @include positionBlock(absolute, 2rem, 2rem);
+
+  &__button {
+    @include size(4rem, 8rem);
+    @include indent(null, 2rem);
+    @include changeColor(2px solid $pink, $piece, $brown);
+    @include focus();
+    @include fontBorder(null, 10px);
+  }
+}

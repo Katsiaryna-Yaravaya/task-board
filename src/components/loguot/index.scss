@@ -1,0 +1,9 @@
+@import 'src/styles/common';
+
+.logout{
+  @include size(4rem, 10rem);
+  @include fontBorder(null, 8px);
+  @include positionBlock(absolute, 4rem, null, null, 18rem);
+  @include changeColor(none, $purple, $white);
+  @include focus();
+}

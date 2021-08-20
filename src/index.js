@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
+import './core/i18n'
 
 import store from './redux/store'
 import { ThemeState } from './context'

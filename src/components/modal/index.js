@@ -1,18 +1,18 @@
 import { Component } from 'react'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
 import ThemeContext from '../../context/theme/theme-context'
 import { modalTypeConstants } from '../../constants/modal'
-import { updateUsersAmount } from '../../backend/api'
 
 import './index.scss'
-// import store from '../../redux/store'
 
 class Modal extends Component {
   static contextType = ThemeContext
 
   state = {
-    // user: this.props.user,
     error: ''
   }
   // componentDidMount() {
@@ -29,19 +29,19 @@ class Modal extends Component {
   // }
 
   handleSubmit = () => {
-    const {password, user, onClickSubmit, oneDollarPayment} = this.props
+    const { password, user, onClickSubmit, oneDollarPayment } = this.props
     if (password === user.password) {
       onClickSubmit()
       oneDollarPayment()
-    } else this.setState({ error: 'password not correct' })
+    } else this.setState({ error: this.props.t('errorModal') })
 
     // достать юзера и провести оплату по правильно введённому паролю
   }
 
-    handleUserAmountUpdate = () => {
-      // console.log('user', this.props.user)
-      // this.props.updateUserAmount(this.props.user.id, {amount: 20})
-    }
+  handleUserAmountUpdate = () => {
+    // console.log('user', this.props.user)
+    // this.props.updateUserAmount(this.props.user.id, {amount: 20})
+  }
 
   handleCancel = () => {
     this.props.onClickCancel()
@@ -50,6 +50,7 @@ class Modal extends Component {
 
   render() {
     const { title, body, handlePayment, btnSubmitTitle = 'payment', type } = this.props
+
     const { error } = this.state
 
     const isConfirmType = type === modalTypeConstants.CONFIRM
@@ -74,18 +75,16 @@ class Modal extends Component {
             </div>
           ) : null}
 
-          {/*<div className='modal-footer'>*/}
           <div className='modal__footer'>
             <button
-              // className='modal-footer__button'
               className='footer__button'
               onClick={() => handlePay()}
             >
-              {btnSubmitTitle}
+              {this.props.t(btnSubmitTitle)}
             </button>
-            <button className='footer__button' onClick={() => this.handleCancel()}>cancel</button>
+            <button className='footer__button' onClick={() => this.handleCancel()}>{this.props.t('cancel')}</button>
           </div>
-          {error}
+          {error && <span className='modal__error-message'>{error}</span>}
         </div>
       </div>
     )
@@ -101,4 +100,18 @@ const mapDispatchToProps = (dispatch) => ({
   oneDollarPayment: () => dispatch({ type: 'ONE_DOLLAR_PAYMENT' })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+const Extended = withTranslation()(Modal)
+Extended.static = Modal.static
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
+  handlePayment: PropTypes.func,
+  btnSubmitTitle: PropTypes.string,
+  type: PropTypes.string
+}
+
+export default compose(withTranslation(), connect(mapStateToProps, mapDispatchToProps))(Modal)

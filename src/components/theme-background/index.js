@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import PropTypes from 'prop-types'
 
 import { useTheme } from '../../context/theme/theme-state'
 import ThemeButton from '../theme-button'
@@ -6,6 +8,8 @@ import ThemeButton from '../theme-button'
 import './index.scss'
 
 const ThemeBackground = ({ openModal }) => {
+
+  const {t} = useTranslation()
   const [isOpenButton, setIsOpenButton] = useState(false)
 
   const isTheme = useTheme()
@@ -21,12 +25,16 @@ const ThemeBackground = ({ openModal }) => {
 
   return (
     <div className='dropdown' onClick={handleClickButton}>
-      <button className='dropdown__button'>Theme</button>
+      <button className='dropdown__button'>{t('theme')}</button>
       {isOpenButton && (
         <ThemeButton themeButton={handleThemeButton}/>
       )}
     </div>
   )
+}
+
+ThemeBackground.propTypes = {
+  // openModal: PropTypes.
 }
 
 export default ThemeBackground

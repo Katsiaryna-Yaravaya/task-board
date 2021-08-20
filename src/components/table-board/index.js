@@ -1,35 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router-dom'
 
 import { useTheme } from '../../context/theme/theme-state'
+import { updateUsers } from '../../backend/api'
 import ThemeBackground from '../theme-background'
 import Modal from '../modal'
 import Tasks from './tasks'
+import AddTask from '../add-task'
 
+import { LOGOUT } from '../../constants/routs'
 import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
-import AddTask from '../add-task'
-import { EXPANDED_TASK_ROUTE } from '../../constants/routs'
+import Logout from '../loguot'
 
 const Table = () => {
+  const { t } = useTranslation()
+  const [boards, setBoards] = useState(null)
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
   const [isModalInfoVisible, setIsModalInfoVisible] = useState(false)
   const [isModalPaymentVisible, setIsModalPaymentVisible] = useState(false)
   const [password, setPassword] = useState(null)
   const theme = useTheme()
+  const history = useHistory()
 
-  const { PAYMENT, CONFIRM } = modalTypeConstants
+  const { REPAYMENT, CONFIRM } = modalTypeConstants
 
   const user = useSelector(state => state.data.user)
-  const [boards, setBoards] = useState(null)
+
+  const update = () => {
+    updateUsers(user.id, user).then()
+  }
 
   useEffect(() => {
-    if (user) {
-      setBoards(user.boards)
-    }
-  }, [user, user.boards])
+    return () => update()
+  }, []);
+
+  useEffect(() => {
+    if (user) setBoards(user.boards)
+  }, [user, user?.boards])
 
   const dragOverHandler = (e) => {
     e.preventDefault()
@@ -69,17 +81,17 @@ const Table = () => {
     e.target.style.boxShadow = 'none'
   }
 
-  const handleOpenModal = () => setIsModalInfoVisible(true)
-  const handlePayment = () => {
+  const handleOpenModal = useCallback(() => setIsModalInfoVisible(true), [])
+  const handlePayment = useCallback(() => {
     setIsModalInfoVisible(false)
     setIsModalPaymentVisible(true)
-  }
-  const handleCancel = () => {
+  }, [])
+  const handleCancel = useCallback(() => {
     setIsModalPaymentVisible(false)
     setIsModalInfoVisible(false)
-  }
-  const handleSubmit = () => setIsModalPaymentVisible(false)
-  const handleChange = (e) => setPassword(e.target.value)
+  }, [])
+  const handleSubmit = useCallback(() => setIsModalPaymentVisible(false), [])
+  const handleChange = useCallback((e) => setPassword(e.target.value), [])
 
   return (
     <>
@@ -101,17 +113,18 @@ const Table = () => {
                 onDragEnd={(e) => dragEndHandler(e)}
                 onDrop={(e) => dropHandler(e, board, task)}
                 key={task.id}
-                task={task.title}
+                task={task}
               />
             )}
           </div>
         ) : null}
+        <Logout path={()=>history.push(LOGOUT)}/>
         {
           isModalInfoVisible ?
             <Modal
-              title={'Pay for your new theme'}
+              title={t('modalTitleConfirm')}
               type={CONFIRM}
-              body={'Only ONE dollar and this topic is yours!'}
+              body={t('modalBodyConfirm')}
               onClickCancel={handleCancel}
               handlePayment={handlePayment}
             /> : null
@@ -119,8 +132,8 @@ const Table = () => {
         {
           isModalPaymentVisible ?
             <Modal
-              title={'Confirm the payment by entering the correct password'}
-              type={PAYMENT}
+              title={t('modalTitlePayment')}
+              type={REPAYMENT}
               body={<input onChange={handleChange} className='body__input' />}
               password={password}
               btnSubmitTitle={'submit'}

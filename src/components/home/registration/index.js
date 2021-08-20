@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import { DATA_REGISTRATION_FORM } from '../../utils'
 import { getUser, postUser } from '../../../backend/api'
@@ -13,6 +14,7 @@ import Credential from './credential'
 import './index.scss'
 
 const Registration = () => {
+  const { t } = useTranslation()
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -26,12 +28,12 @@ const Registration = () => {
   // TODO you can build useEffect with checking for user in the "user store"
   // const user = useSelector(state => state.data.user) зачем нам надо проверять на юзера в сторе?
 
-  let history = useHistory()
+  const history = useHistory()
   const dispatch = useDispatch()
 
   const encodedUserCredentials = {
     ...credentials,
-    password: window.btoa(password)
+    password: window.btoa(unescape(encodeURIComponent(password)))
   }
 
   const decodedUserCredentials = {
@@ -42,7 +44,7 @@ const Registration = () => {
   const createUser = () => {
     if (!isAuthenticated) {
       getUser(email).then((user) => {
-        if (user.data.email === email) setCredentialsError('User already exists')
+        if (user.data.email === email) setCredentialsError(t('credentialsErrorExists'))
       })
       if (credentialsError) return
       postUser(credentials).then(() => {
@@ -63,7 +65,7 @@ const Registration = () => {
         if (IS_NOT_REQUEST_VALID(statusText)) return
 
         if (data.length === 0) {
-          setCredentialsError('User not exist')
+          setCredentialsError( t('credentialsErrorNoExists'))
           return
         }
 
@@ -73,14 +75,14 @@ const Registration = () => {
 
         !!registeredUser && registeredUser.password === password ?
           history.push(TABLE_BOARD_ROUTE) :
-          setCredentialsError('Email or password are incorrect')
+          setCredentialsError( t('credentialsErrorIncorrect'))
 
         dispatch(saveUser(registeredUser))
       })
   }
 
   const registration = () => {
-    isEmailValid(credentials) && encodedUserCredentials ? createUser() : setCredentialsError('User is not valid')
+    isEmailValid(credentials) && encodedUserCredentials ? createUser() : setCredentialsError(t('credentialsErrorNotValid'))
   }
 
   const handleSubmit = (e, name) => {
@@ -103,7 +105,7 @@ const Registration = () => {
   return (
     <div className='content'>
       <div className='box'>
-        <h2 className='box__title'>Login</h2>
+        <h2 className='box__title'>{t('Login')}</h2>
         <form>
           {DATA_REGISTRATION_FORM.length > 0 && DATA_REGISTRATION_FORM.map((inputData, idx) => {
               if (inputData.type === 'submit') {

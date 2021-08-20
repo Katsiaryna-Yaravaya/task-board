@@ -8,10 +8,7 @@ export const postUser = (data) =>
     .then((res) => res.data)
     .catch(error => console.log(error))
 
-export const getBord = (id) => DB(`/users?id=${id}`)
-
-
-/*export const updateUsersAmount = (id, data) =>
+export const updateUsers = (id, data) =>
   DB.patch(`/users/${id}`, data)
-    .then(res => console.log('updateUsersAmount', res.data))
-    .catch(error => console.log(error))*/
+    .then(res => console.log(res.data.user))
+    .catch(error => console.log(error))

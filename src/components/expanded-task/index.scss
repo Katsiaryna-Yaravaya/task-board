@@ -1,67 +1,79 @@
 @import '../../styles/common';
 
 .task {
-  @include positionBlock(absolute, 3rem, null, null, 5rem);
-  border: 1px solid $deepSkyBlue ;
-  padding: 2rem 3rem;
-  border-radius: 10px;
+  @include positionBlock(absolute, 3rem, null, 3rem, 5rem);
+  @include size(null, 52rem);
+  @include changeColor(1px solid $deepSkyBlue);
+  @include indent(2rem 3rem);
+  @include fontBorder(null, 10px);
+  box-sizing: border-box;
+
+  .arrow {
+    @include size(5rem, 5rem);
+    @include positionBlock(absolute);
+    @include focus();
+    @include fontBorder(null, 50%);
+    @include changeColor(none, $lightBlue);
+    box-shadow: 0 0 16px 9px rgba(145, 180, 250, 0.94);
+
+        &__img {
+          @include size(4rem, 4rem);
+
+    }
+  }
 
   &__title {
-    font-size: 8rem;
+    @include fontBorder(4rem);
+    @include size(null, 46rem);
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__edit {
-    margin: 4rem 0;
-    font-size: 2.4rem;
-    padding: 1rem;
-    width: 40rem;
-    height: 16rem;
-    border: 2px solid $lightPink;
-    outline: none;
+    @include size(16rem, 46rem);
+    @include indent(1rem, 4rem 0);
+    @include changeColor(2px solid $lightPink);
+    @include fontBorder(2.4rem, 10px);
+    @include focus(null, none);
     resize: none;
     overflow: overlay;
-    border-radius: 10px;
   }
 
   &__description {
-    font-size: 2.5rem;
+    @include fontBorder(2.4rem);
+    @include indent(0 2rem, 0 0 4rem 0);
+    @include size(null, 46rem);
     word-wrap: break-word;
-    padding: 0 2rem;
-    width: 40rem;
+    max-height: 18rem;
+    overflow: overlay;
   }
 
   .task-block-buttons {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 3rem 0;
+    @include positionBlock(absolute, null, null, 4rem, 8rem);
 
     &__change {
-      background: $lavanda;
-      box-shadow: 0px 0px 49px 30px rgba(222, 169, 241, 1);
-      border: none;
+      @include changeColor(none, $lavanda);
+      box-shadow: 0 0 49px 30px rgba(222, 169, 241, 1);
     }
 
     &__delete {
-      background: $red;
+      @include changeColor(none, $red);
       box-shadow:0 0 41px 17px rgba(255, 0, 0, 0.72);
-      border: none;
+      @include indent(null, 0 6rem);
     }
 
     &__download {
-      background: $lightBlue;
+      @include changeColor(none, $lightBlue);
       box-shadow: 0 0 41px 17px rgba(98, 145, 240, 0.72);
-      border: none;
     }
 
     .task-button {
-      height: 8rem;
-      width: 8rem;
-      border-radius: 50%;
+      @include size(8rem, 8rem);
+      @include fontBorder(null,50%);
 
       &__img {
-        height: 6rem;
-        width: 6rem;
+        @include size(6rem, 6rem);
       }
     }
   }

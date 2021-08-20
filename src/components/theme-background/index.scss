@@ -5,7 +5,7 @@
   @include flexBlock(grid, null, null);
 
   &__button {
-    @include size(4rem, 8rem);
+    @include size(4rem, 10rem);
     @include fontBorder(null, 8px);
     @include changeColor(none, linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706), $darkBlue);
     @include focus();

@@ -1,9 +1,5 @@
-/*
+import { Switch, Route } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import i18n from '../core/i18n'
-*/
-
-import {Switch, Route} from "react-router-dom"
 
 import Registration from '../components/home/registration'
 import Table from '../components/table-board'
@@ -12,63 +8,23 @@ import ExpandedTask from '../components/expanded-task'
 import './index.scss'
 
 const App = () => {
-  /*
-    const { t } = useTranslation('translation')
-    const [nestedComponentState, setNestedComponentState] = useState({
-      text: 'string data',
-      modified: false
-    })
-    const dispatch = useDispatch()
-    const { testData } = useSelector(state => state.users)
 
-    const { text, modified } = nestedComponentState
+  const { t, i18n } = useTranslation('translation')
 
-    const handleContextUpdate = () => setTestContextData('updated context data')
-    const handleReduxUpdate = () =>
-      dispatch(testActions.updateTestData('updated redux data'))
-
-    const handleLanguageChange = () => {
-      const RU_LOCALE = 'ru'
-      const EN_LOCALE = 'en'
-      const currentLanguage = i18n.language
-      const isRussianLocale = currentLanguage === RU_LOCALE
-
-      i18n.changeLanguage(isRussianLocale ? EN_LOCALE : RU_LOCALE)
-    }
-
-    const handleClick = () =>
-      setNestedComponentState(({ modified }) => ({
-        text: 'new nested container string',
-        modified: !modified
-      }))
-
-  */
-
+  const handleClick = (lang) => {
+    i18n.changeLanguage(lang).then()
+  }
 
   return (
     <div className='app'>
-      {/*<div className="state-data">
-        <span className="state-data__text">{testContextData}</span>
-        <span className="state-data__text">{testData}</span>
+      <div className='language'>
+        <button className='language__button' onClick={() => handleClick('en')}>English</button>
+        <button className='language__button' onClick={() => handleClick('ru')}>Русский</button>
       </div>
-
-      <div className="triggers">
-        <button onClick={handleContextUpdate}>{t('updateContext')}</button>
-        <button onClick={handleReduxUpdate}>{t('updateRedux')}</button>
-      </div>
-
-      <button onClick={handleLanguageChange}>{t('changeLanguage')}</button>
-
-      <NestedComponent
-        updateNestedComponentState={handleClick}
-        stringData={text}
-        modified={modified}
-      />*/}
-
       <Switch>
-        <Route exact path="/" component={Registration}/>
-        <Route exact path="/table-board" component={Table}/>
-        <Route exact path="/table-board/task" component={ExpandedTask}/>
+        <Route exact path='/' component={Registration} />
+        <Route exact path='/table-board' component={Table} />
+        <Route exact path='/table-board/task' component={ExpandedTask} />
       </Switch>
     </div>
   )

@@ -4,6 +4,14 @@
   @include flexBlock();
   @include positionBlock(fixed, 0, 0, 0, 0);
   @include changeColor(null, rgba(0, 0, 0, 0.2), $chocolate);
+
+  &__error-message {
+    @include changeColor(null, null, $red);
+    @include fontBorder(2.5rem);
+    @include flexBlock();
+    padding-bottom: 8rem;
+    margin-top: -9.6rem;
+  }
 }
 
 .modal-content {

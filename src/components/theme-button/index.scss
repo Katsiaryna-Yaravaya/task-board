@@ -5,7 +5,7 @@
   flex-direction: column;
 
   .theme__button {
-    @include size(4rem, 8rem);
+    @include size(4rem, 10rem);
     @include fontBorder(null, 8px);
     @include focus();
     margin-bottom: 1rem;

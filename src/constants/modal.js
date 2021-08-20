@@ -1,5 +1,5 @@
-// todo rename   PAYMENT
+// todo rename   REPAYMENT
 export const modalTypeConstants = {
   CONFIRM: 'CONFIRM',
-  PAYMENT: 'PAYMENT'
+  REPAYMENT: 'REPAYMENT'
 }

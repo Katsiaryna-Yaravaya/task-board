@@ -1,7 +1,8 @@
 import * as types from './types'
 
 const INITIAL_STATE = {
-  user: {}
+  user: {},
+  taskId: ''
 }
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -20,8 +21,8 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         }
       }
     case types.userActionTypes.SET_TASK:
-      const tempBoards = state.user.boards.map(board => {
-        if (board.id === 1) {
+      const tempBoards = state.user.boards.map((board, idx) => {
+        if (idx === 0) {
           return {
             id: board.id,
             title: board.title,
@@ -36,7 +37,13 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           ...state.user,
           boards: tempBoards
         }
-
+      }
+    case types.userActionTypes.SET_TASK_ID:
+      return {
+        user:{
+          ...state.user
+        },
+        taskId: action.payload
       }
 
     default:

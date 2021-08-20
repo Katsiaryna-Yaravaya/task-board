@@ -1,15 +1,15 @@
 @import 'src/styles/common';
 
 .board {
-  @include flexBlock(flex, center, null);
-  @include indent(2rem 1rem, 2rem);
-  @include changeColor(6px solid $lightGrey);
-  @include fontBorder(null, 5%);
-  min-width: 30rem;
-  min-height: 50rem;
-  flex-direction: column;
+@include flexBlock(flex, center, null);
+@include indent(2rem 1rem, 2rem);
+@include changeColor(6px solid $lightGrey);
+@include fontBorder(null, 5%);
+@include size(50rem, 30rem);
+overflow: overlay;
+flex-direction: column;
 
-  &__title {
-    font-weight: 700;
-  }
+&__title {
+font-weight: 700;
+}
 }

@@ -1,0 +1,16 @@
+@import 'src/styles/common';
+
+.advice {
+  @include positionBlock(absolute, 16rem, null, null, 64rem);
+  max-width: 58rem;
+
+  &__title {
+    @include fontBorder(4rem);
+    @include changeColor(null, null, $purple);
+  }
+
+  &__text {
+    @include fontBorder(2.4rem);
+    margin-top: 2rem;
+  }
+}

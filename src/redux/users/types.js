@@ -7,5 +7,6 @@
 export const userActionTypes = {
   SET_USER: 'SET_USER',
   ONE_DOLLAR_PAYMENT: 'ONE_DOLLAR_PAYMENT',
-  SET_TASK: 'SET_TASK'
+  SET_TASK: 'SET_TASK',
+  SET_TASK_ID:'SET_TASK_ID'
 }

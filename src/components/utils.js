@@ -4,7 +4,7 @@ export const DATA_REGISTRATION_FORM = [
     name: 'email',
     value: 'email',
     autocomplete: 'on',
-    label: 'e-mail',
+    label: 'email',
     className: 'input-box__user-name'
   },
   {
@@ -18,13 +18,13 @@ export const DATA_REGISTRATION_FORM = [
   {
     type: 'submit',
     name: 'Sign in',
-    value: 'Sign in',
+    value: 'signIn',
     className: 'sign-in'
 },
   {
     type: 'submit',
     name: 'registration',
-    value: 'Registration',
+    value: 'registration',
     className: 'sign-in'
   }
 ]
