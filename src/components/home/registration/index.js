@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -18,11 +18,11 @@ const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    amount: null,
-    boards: []
+    amount: null
   })
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)
+  // const isError  = useRef(false)
   const { email, password } = credentials
 
   // TODO you can build useEffect with checking for user in the "user store"
@@ -41,14 +41,43 @@ const Registration = () => {
     password: window.atob(encodedUserCredentials.password)
   }
 
-  const createUser = () => {
+  const  createUser = async () => {
+    const boards = {
+      'boards': [
+        {
+          'id': 1,
+          'title': 'Do It',
+          'tasks': []
+        },
+        {
+          'id': 2,
+          'title': 'In progress',
+          'tasks': []
+        },
+        {
+          'id': 3,
+          'title': 'Done',
+          'tasks': []
+        }
+      ]
+    }
+    let isError = false
     if (!isAuthenticated) {
-      getUser(email).then((user) => {
-        if (user.data.email === email) setCredentialsError(t('credentialsErrorExists'))
+      await getUser(email).then((user) => {
+        user.data.forEach(item => {
+          if (item.email === email) {
+            setCredentialsError(t('credentialsErrorExists'))
+            // isError.current = true
+            isError=true
+          }
+        })
       })
-      if (credentialsError) return
-      postUser(credentials).then(() => {
-        dispatch(saveUser(credentials))
+
+      if (isError) return
+
+      const user = { ...credentials, ...boards }
+      postUser(user).then((requestedUser) => {
+        dispatch(saveUser(requestedUser))
         history.push(TABLE_BOARD_ROUTE)
       })
     }
@@ -65,7 +94,7 @@ const Registration = () => {
         if (IS_NOT_REQUEST_VALID(statusText)) return
 
         if (data.length === 0) {
-          setCredentialsError( t('credentialsErrorNoExists'))
+          setCredentialsError(t('credentialsErrorNoExists'))
           return
         }
 
@@ -75,7 +104,7 @@ const Registration = () => {
 
         !!registeredUser && registeredUser.password === password ?
           history.push(TABLE_BOARD_ROUTE) :
-          setCredentialsError( t('credentialsErrorIncorrect'))
+          setCredentialsError(t('credentialsErrorIncorrect'))
 
         dispatch(saveUser(registeredUser))
       })

@@ -42,18 +42,13 @@
     {
       "id": 12,
       "email": "1111@mail.com",
-      "password": "1111",
+      "password": "uygkg",
       "amount": null,
       "boards": [
         {
           "id": 1,
           "title": "Do It",
           "tasks": [
-            {
-              "id": "6cba7925-5dda-412b-a2a1-69ba2464a",
-              "title": "Go",
-              "description": "dktgynjyhmyutjyugflgynjyhmyutjyugflgynjyhmyutjyugflgynjyhmyutjyugflgynjyhmyutjyugflgynj yhmyutjyugflmjbhs"
-            },
             {
               "id": "6cba7925-5dda-412b-a2a1-69ba2464",
               "title": "Went",
@@ -67,10 +62,6 @@
             {
               "id": 4,
               "title": "trhs"
-            },
-            {
-              "id": 5,
-              "title": "rdtg"
             }
           ]
         },
@@ -82,16 +73,6 @@
               "id": "6a7925-5dda-412b-a2a1-69ba2464a",
               "title": "iuj6tf7rujt",
               "description": "dktgynjyhmyutjjyhmyutjyugflgynjyhmyutjyugflgynjyhmyutjyugflgynj"
-            },
-            {
-              "id": "6cba7925-5dda-412b-a2a1-a2464a",
-              "title": "Whtdfghbent",
-              "description": "gflmjbhs"
-            },
-            {
-              "id": "6cba7925-5dda-412b-a2a1",
-              "title": "Ggfhbgfone",
-              "description": "bvgfvlgynj yhmyutjyugflmjbhs"
             }
           ]
         },
@@ -103,16 +84,6 @@
               "id": "6cba7925-5dda-412b-a",
               "title": "ujuj",
               "description": "dktgynjy jjyhmyutjyug jyhmyutjyug myutjyugflgynj yhmyutjyugflmjbhs"
-            },
-            {
-              "id": "6cba7925-412b-a2a1",
-              "title": "hy",
-              "description": "dktgynjyhmyutjjyhm jyhmyutjyugflgynjyhmyutjyugflgynj yhmyutjyugflmjbhs"
-            },
-            {
-              "id": "5dda-412b-a2a1",
-              "title": "Gofghne",
-              "description": "vfdvdfvdfyugflgynj yhmyutjyugflmjbhs"
             }
           ]
         }

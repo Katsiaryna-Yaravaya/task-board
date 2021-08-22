@@ -27,9 +27,7 @@ const ExpandedTask = () => {
   const getInformationTask = () => {
     boards.forEach((board) => {
       board.tasks.forEach((task) => {
-        if (task.id === taskId) {
-          setTask(task)
-        }
+        if (task.id === taskId) setTask(task)
       })
     })
   }

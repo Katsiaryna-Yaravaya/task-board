@@ -10,5 +10,5 @@ export const postUser = (data) =>
 
 export const updateUsers = (id, data) =>
   DB.patch(`/users/${id}`, data)
-    .then(res => console.log(res.data.user))
+    .then(res => res.data.user)
     .catch(error => console.log(error))

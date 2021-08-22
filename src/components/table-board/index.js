@@ -15,6 +15,7 @@ import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
 import Logout from '../loguot'
+import { v4 as uuidv4 } from 'uuid'
 
 const Table = () => {
   const { t } = useTranslation()
@@ -37,7 +38,7 @@ const Table = () => {
 
   useEffect(() => {
     return () => update()
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (user) setBoards(user.boards)
@@ -48,16 +49,16 @@ const Table = () => {
     if (e.target.className === 'item') e.target.style.boxShadow = '0 4px 3px gray'
   }
   const dragLeaveHandler = (e) => e.target.style.boxShadow = 'none'
-  const dragStartHandler = (e, board, item) => {
+  const dragStartHandler = (e, board, task) => {
     setCurrentBoard(board)
-    setCurrentItem(item)
+    setCurrentItem(task)
   }
   const dragEndHandler = (e) => e.target.style.boxShadow = 'none'
-  const dropHandler = (e, board, item) => {
+  const dropHandler = (e, board, task) => {
     e.preventDefault()
     const currentIndex = currentBoard.tasks.indexOf(currentItem)
     currentBoard.tasks.splice(currentIndex, 1)
-    const dropIndex = board.tasks.indexOf(item)
+    const dropIndex = board.tasks.indexOf(task)
     board.tasks.splice(dropIndex + 1, 0, currentItem)
     setBoards(boards.map(b => {
       if (b.id === board.id) return board
