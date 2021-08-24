@@ -3,6 +3,7 @@
 .theme-choose {
   @include flexBlock(flex, null, null);
   flex-direction: column;
+  z-index: 1;
 
   .theme__button {
     @include size(4rem, 10rem);

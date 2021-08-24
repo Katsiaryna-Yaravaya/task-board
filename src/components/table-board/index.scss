@@ -8,6 +8,7 @@
   @include size(50rem, 30rem);
   overflow: overlay;
   flex-direction: column;
+  margin-top: 8rem;
 
   &__title {
     font-weight: 700;

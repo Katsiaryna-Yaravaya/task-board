@@ -100,12 +100,15 @@ const Registration = () => {
         const registeredUser = data[0]
         setIsAuthenticated(!!registeredUser)
 
+        console.log(registeredUser)
         console.log(registeredUser.password)
         console.log(password)
-        !!registeredUser && registeredUser.password !== password ?
-          setCredentialsError(t('credentialsErrorIncorrect')) :
-          history.push(TABLE_BOARD_ROUTE)
+        console.log(registeredUser.password === password)
 
+
+        !!registeredUser && (registeredUser.password === password) ?
+          history.push(TABLE_BOARD_ROUTE) :
+          setCredentialsError(t('credentialsErrorIncorrect'))
 
         dispatch(saveUser(registeredUser))
       })

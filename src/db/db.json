@@ -42,7 +42,7 @@
     {
       "id": 12,
       "email": "1111@mail.com",
-      "password": "oyuho",
+      "password": "1111",
       "amount": 3,
       "boards": [
         {
@@ -90,89 +90,6 @@
               "title": "1111111"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "f14e14fb-87a3-45e7-a727-2bf6bc674e54",
-      "email": "11ytf11@mail.com",
-      "password": "jtfgh",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
-          "tasks": [
-            {
-              "id": "093fe27f-1363-4f58-a39e-d1d921c2c8cb",
-              "title": "jmg",
-              "description": ""
-            },
-            {
-              "id": "38de5f77-cfba-46b4-954c-11bd9bfc6d89",
-              "title": "jgh",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": "a91545c7-eac4-4df0-b9bb-27c1bdc9d56b",
-      "email": "vfggggdd@mail.com",
-      "password": "ujdthgh",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
-          "tasks": [
-            {
-              "id": "ad04e672-7cdd-453f-a5bb-fd7f596473f3",
-              "title": "kjmuh",
-              "description": ""
-            },
-            {
-              "id": "d47d79b3-8751-493a-8d78-cb771bfb03f3",
-              "title": "jmh",
-              "description": ""
-            },
-            {
-              "id": "7c1c08ca-3db5-4c22-b56f-f2cbf274a249",
-              "title": "v",
-              "description": ""
-            },
-            {
-              "id": "f8da07fc-2516-42c5-a0d8-f503bcb86b57",
-              "title": "jhb",
-              "description": ""
-            },
-            {
-              "id": "bb8fb8dc-0943-4871-8410-d0d3c2de509b",
-              "title": "mhj",
-              "description": ""
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
         }
       ]
     }
