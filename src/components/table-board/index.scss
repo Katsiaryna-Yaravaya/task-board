@@ -1,15 +1,51 @@
 @import 'src/styles/common';
 
 .board {
-@include flexBlock(flex, center, null);
-@include indent(2rem 1rem, 2rem);
-@include changeColor(6px solid $lightGrey);
-@include fontBorder(null, 5%);
-@include size(50rem, 30rem);
-overflow: overlay;
-flex-direction: column;
+  @include flexBlock(flex, center, null);
+  @include indent(2rem 1rem, 2rem);
+  @include changeColor(6px solid $lightGrey);
+  @include fontBorder(null, 5%);
+  @include size(50rem, 30rem);
+  overflow: overlay;
+  flex-direction: column;
 
-&__title {
-font-weight: 700;
+  &__title {
+    font-weight: 700;
+  }
 }
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-desktop-small-only {
+  .board {
+    @include size(44rem, auto);
+    min-width: 22rem;
+  }
+}
+
+@include for-tablet-portrait-up {
+  .board {
+    @include size(40rem);
+    margin-top: 34rem;
+    min-width: 18rem;
+  }
+}
+
+@include for-phone-tablet-only {
+  .board {
+    @include size(36rem);
+    min-width: 14rem;
+  }
+}
+
+@include for-phone-only {
+  .board {
+    @include size(32rem);
+    @include indent(2rem 0.4rem, auto);
+    min-width: 12rem;
+  }
 }

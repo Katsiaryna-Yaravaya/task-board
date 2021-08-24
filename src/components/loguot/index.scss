@@ -7,3 +7,15 @@
   @include changeColor(none, $purple, $white);
   @include focus();
 }
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-phone-only {
+  .logout{
+    @include positionBlock(absolute, 10rem, null, null, 4rem);
+  }
+}

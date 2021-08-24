@@ -17,3 +17,35 @@
     @include focus();
   }
 }
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+@include for-tablet-portrait-up {
+  .form-bord {
+    @include positionBlock(absolute, 10rem);
+  }
+}
+
+@include for-phone-tablet-only {
+  .form-bord {
+    @include positionBlock(null, null, null, null, 18rem);
+  }
+}
+
+@include for-phone-only {
+  .form-bord {
+    @include positionBlock(null, null, null, null, 15rem);
+
+    &__todo {
+      @include size(null,11rem);
+      @include fontBorder(1.5rem);
+    }
+
+    &__button {
+      @include indent(1rem, 0 0 0 1.5rem);
+    }
+  }
+}

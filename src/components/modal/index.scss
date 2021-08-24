@@ -7,7 +7,7 @@
 
   &__error-message {
     @include changeColor(null, null, $red);
-    @include fontBorder(2.5rem);
+    @include fontBorder(2rem);
     @include flexBlock();
     padding-bottom: 8rem;
     margin-top: -9.6rem;
@@ -56,6 +56,21 @@
       @include fontBorder(null, 10px);
       @include changeColor(1px solid $brown);
       @include focus();
+    }
+  }
+}
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-phone-only {
+
+  .modal {
+    &__error-message {
+      @include fontBorder(1.8rem);
     }
   }
 }

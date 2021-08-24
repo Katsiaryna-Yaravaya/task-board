@@ -2,10 +2,17 @@
 
 .content {
   @include size(100vh, 100vw);
-  background: url(./bg.jpg);
+  background: url(./bg.jpg) no-repeat;
   background-size: cover;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: #fff !important;
+}
 .box {
   @include positionBlock(absolute, 50%, null, null, 50%);
   @include size(null, 40%);
@@ -23,8 +30,70 @@
 }
 
 .error-message {
-  @include positionBlock(absolute, null, null, 14rem, 14rem);
-  @include changeColor(null, inheri, $red);
-  @include fontBorder(2.5rem);
+  @include changeColor(null, null, $red);
+  @include fontBorder(2rem);
+  @include flexBlock();
+  padding-bottom: 6rem;
+  margin-top: -11rem;
   text-shadow: 2px 2px 5px $midnightBlue;
+}
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-desktop-only {
+
+  .content {
+    background-position: -45em;
+    background-size: 163em auto;
+  }
+
+  .box {
+    min-width: 22rem;
+  }
+
+  .error-message {
+    padding-bottom: 12rem;
+    margin-top: -18rem;
+  }
+}
+
+@include for-tablet-portrait-up {
+
+  .content {
+    background-position: -34em;
+    background-size: 124em auto;
+  }
+
+  .error-message {
+    margin-top: -16rem;
+    padding-bottom: 12rem;
+    text-align: center;
+  }
+}
+
+@include for-phone-only {
+
+  .content {
+    background-position: -46em;
+    background-size: 124em auto;
+  }
+
+  .box {
+    @include size(36rem);
+    padding: 4%;
+
+    &__title {
+      @include fontBorder(4rem);
+    }
+  }
+
+  .error-message {
+    margin-top: -14rem;
+    padding-bottom: 10rem;
+    font-size: 1.4rem;
+  }
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -18,11 +18,10 @@ const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    amount: null
+    amount: 3
   })
   const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)
-  // const isError  = useRef(false)
   const { email, password } = credentials
 
   // TODO you can build useEffect with checking for user in the "user store"
@@ -41,7 +40,7 @@ const Registration = () => {
     password: window.atob(encodedUserCredentials.password)
   }
 
-  const  createUser = async () => {
+  const createUser = async () => {
     const boards = {
       'boards': [
         {
@@ -67,8 +66,7 @@ const Registration = () => {
         user.data.forEach(item => {
           if (item.email === email) {
             setCredentialsError(t('credentialsErrorExists'))
-            // isError.current = true
-            isError=true
+            isError = true
           }
         })
       })
@@ -102,9 +100,12 @@ const Registration = () => {
         const registeredUser = data[0]
         setIsAuthenticated(!!registeredUser)
 
-        !!registeredUser && registeredUser.password === password ?
-          history.push(TABLE_BOARD_ROUTE) :
-          setCredentialsError(t('credentialsErrorIncorrect'))
+        console.log(registeredUser.password)
+        console.log(password)
+        !!registeredUser && registeredUser.password !== password ?
+          setCredentialsError(t('credentialsErrorIncorrect')) :
+          history.push(TABLE_BOARD_ROUTE)
+
 
         dispatch(saveUser(registeredUser))
       })

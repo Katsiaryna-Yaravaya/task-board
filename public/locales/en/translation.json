@@ -16,7 +16,7 @@
   "submit": "submit",
   "payment": "payment",
   "cancel":"cancel",
-  "errorModal": "password not correct",
+  "errorModal": "password not correct (insufficient funds)",
   "credentialsErrorExists": "User already exists",
   "credentialsErrorNoExists": "User not exist",
   "credentialsErrorIncorrect": "Email or password are incorrect",

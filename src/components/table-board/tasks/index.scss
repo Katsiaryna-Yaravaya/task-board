@@ -6,4 +6,31 @@
   @include changeColor(2px solid lightpink, $darkWhite);
   @include fontBorder(null, 6px);
   @include focus(grab);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-desktop-small-only {
+  .item {
+    @include size( null, 20rem);
+  }
+}
+
+@include for-tablet-portrait-up {
+  .item {
+    @include size( null, 16rem);
+  }
+}
+
+@include for-phone-tablet-only {
+  .item {
+    @include size( null, 12rem);
+    @include fontBorder(1.2rem);
+  }
 }

@@ -95,3 +95,23 @@
   cursor: $cr;
   outline: $ou;
 }
+
+@mixin for-desktop-only {
+  @media (max-width: 95.6em) { @content; }
+}
+
+@mixin for-desktop-small-only {
+  @media (max-width: 65em) { @content; }
+}
+
+@mixin for-tablet-portrait-up {
+  @media (max-width: 56.8em) { @content; }
+}
+
+@mixin for-phone-tablet-only {
+  @media (max-width: 39em) { @content; }
+}
+
+@mixin for-phone-only {
+  @media (max-width: 31.6em) { @content; }
+}

@@ -15,33 +15,15 @@ class Modal extends Component {
   state = {
     error: ''
   }
-  // componentDidMount() {
-  //   this.setState({
-  //     ...this.state,
-  //     user: this.props.user
-  //   })
-  // }
-  // componentDidUpdate() {
-  //     console.log('componentDidUpdate')
-  // }
-  // componentWillUnmount() {
-  //   console.log('componentWillUnmount')
-  // }
 
   handleSubmit = () => {
     const { password, user, onClickSubmit, oneDollarPayment } = this.props
-    if (password === user.password) {
+    if (password === user.password && user.amount > 0) {
       onClickSubmit()
       oneDollarPayment()
     } else this.setState({ error: this.props.t('errorModal') })
-
-    // достать юзера и провести оплату по правильно введённому паролю
   }
 
-  handleUserAmountUpdate = () => {
-    // console.log('user', this.props.user)
-    // this.props.updateUserAmount(this.props.user.id, {amount: 20})
-  }
 
   handleCancel = () => {
     this.props.onClickCancel()
@@ -58,7 +40,7 @@ class Modal extends Component {
     const handlePay = () => isConfirmType ? handlePayment() : this.handleSubmit()
 
     return (
-      <div className='modal' onClick={this.handleUserAmountUpdate}>
+      <div className='modal'>
         <div className='modal-content'>
 
           {title ? (
@@ -96,7 +78,6 @@ const mapStateToProps = ({ data: { user } }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // updateUserAmount: (id, data) => dispatch(updateUsersAmount(id, data)),
   oneDollarPayment: () => dispatch({ type: 'ONE_DOLLAR_PAYMENT' })
 })
 

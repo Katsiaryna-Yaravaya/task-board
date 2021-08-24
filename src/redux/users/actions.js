@@ -15,3 +15,13 @@ export const saveIdTask = (taskId) => ({
   type: types.userActionTypes.SET_TASK_ID,
   payload: taskId
 })
+
+export const deleteTask = (id) => ({
+  type: types.userActionTypes.DELETE_TASK,
+  payload: id
+})
+
+export const savedTask = (description) => ({
+  type: types.userActionTypes.SAVE_TASK,
+  payload: description
+})

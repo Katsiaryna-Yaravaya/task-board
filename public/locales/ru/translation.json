@@ -16,7 +16,7 @@
   "submit": "отправить",
   "payment": "Оплата",
   "cancel":"выйти",
-  "errorModal": "неверно введён пароль",
+  "errorModal": "неверно введён пароль (недостаточно средств)",
   "credentialsErrorExists": "Пользователь уже существует",
   "credentialsErrorNoExists": "Пользователь не существует",
   "credentialsErrorIncorrect": "Почта или пароль неверны",

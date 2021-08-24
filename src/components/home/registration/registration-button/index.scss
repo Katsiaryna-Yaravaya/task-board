@@ -6,3 +6,24 @@
   @include changeColor(none, $pink, $white);
   @include focus(pointer, none);
 }
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-desktop-only {
+  .sign-in {
+    @include flexBlock (flex, null, null);
+    @include indent(null, 2rem auto);
+    @include fontBorder(1.6rem);
+
+  }
+};
+
+@include for-phone-only {
+  .sign-in {
+    @include fontBorder(1.5rem);
+  }
+}

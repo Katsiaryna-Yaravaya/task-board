@@ -18,7 +18,6 @@
 
         &__img {
           @include size(4rem, 4rem);
-
     }
   }
 
@@ -31,7 +30,7 @@
   }
 
   &__edit {
-    @include size(16rem, 46rem);
+    @include size(20rem, 46rem);
     @include indent(1rem, 4rem 0);
     @include changeColor(2px solid $lightPink);
     @include fontBorder(2.4rem, 10px);
@@ -43,29 +42,31 @@
   &__description {
     @include fontBorder(2.4rem);
     @include indent(0 2rem, 0 0 4rem 0);
-    @include size(null, 46rem);
+    @include size(22rem, 46rem);
     word-wrap: break-word;
-    max-height: 18rem;
     overflow: overlay;
   }
 
   .task-block-buttons {
     @include positionBlock(absolute, null, null, 4rem, 8rem);
 
-    &__change {
+    &__save {
       @include changeColor(none, $lavanda);
       box-shadow: 0 0 49px 30px rgba(222, 169, 241, 1);
+      @include focus();
     }
 
     &__delete {
       @include changeColor(none, $red);
       box-shadow:0 0 41px 17px rgba(255, 0, 0, 0.72);
       @include indent(null, 0 6rem);
+      @include focus();
     }
 
     &__download {
       @include changeColor(none, $lightBlue);
       box-shadow: 0 0 41px 17px rgba(98, 145, 240, 0.72);
+      @include focus();
     }
 
     .task-button {
@@ -74,6 +75,69 @@
 
       &__img {
         @include size(6rem, 6rem);
+      }
+    }
+  }
+}
+
+
+//------------------------------------------
+//---------------media queries--------------
+//------------------------------------------
+
+
+@include for-tablet-portrait-up {
+  .task {
+    top: 24rem;
+    bottom: auto;
+
+    &__edit {
+      height: 20rem;
+    }
+
+    &__description {
+      height: 24rem;
+    }
+
+    .arrow {
+      top: -20rem;
+      left: -1rem;
+    }
+  }
+}
+
+@include for-phone-tablet-only {
+
+  .task {
+    width: 42rem;
+
+    &__title {
+      width: 36rem;
+    }
+
+    &__edit {
+      height: 20rem;
+      width: 36rem;
+      font-size: 2rem;
+    }
+
+    &__description {
+      height: 28rem;
+      width: 36rem;
+    }
+
+    .task-block-buttons {
+      margin-left: -3rem;
+      position: relative;
+      margin-top: 5rem;
+      bottom: auto;
+
+      .task-button {
+        @include size(6rem, 6rem);
+
+        &__img {
+          @include size(4rem, 4rem);
+        }
       }
     }
   }

@@ -27,7 +27,7 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           return {
             id: board.id,
             title: board.title,
-            tasks: board.tasks.concat({ id: uuidv4(), title: action.payload })
+            tasks: board.tasks.concat({ id: uuidv4(), title: action.payload, description: '' })
           }
         }
         return board
@@ -41,10 +41,48 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       }
     case types.userActionTypes.SET_TASK_ID:
       return {
-        user:{
+        user: {
           ...state.user
         },
         taskId: action.payload
+      }
+    case types.userActionTypes.DELETE_TASK:
+      const deletedTask = state.user.boards.map(board => {
+        return {
+          id: board.id,
+          title: board.title,
+          tasks: board.tasks.filter(task => task.id !== action.payload)
+        }
+      })
+      return {
+        user: {
+          ...state.user,
+          boards: deletedTask
+
+        }
+      }
+    case types.userActionTypes.SAVE_TASK:
+      const savedTask = state.user.boards.map(board => {
+        return {
+          id: board.id,
+          title: board.title,
+          tasks: board.tasks.map(task => {
+            if (task.id === action.payload.taskId) {
+              return {
+                id: task.id,
+                title: task.title,
+                description: action.payload.value
+              }
+            }
+            return task
+          })
+        }
+      })
+      return {
+        user: {
+          ...state.user,
+          boards: savedTask
+        }
       }
 
     default:

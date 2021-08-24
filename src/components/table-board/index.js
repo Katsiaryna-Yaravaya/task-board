@@ -9,13 +9,12 @@ import ThemeBackground from '../theme-background'
 import Modal from '../modal'
 import Tasks from './tasks'
 import AddTask from '../add-task'
+import Logout from '../loguot'
 
 import { LOGOUT } from '../../constants/routs'
 import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
-import Logout from '../loguot'
-import { v4 as uuidv4 } from 'uuid'
 
 const Table = () => {
   const { t } = useTranslation()
@@ -38,7 +37,7 @@ const Table = () => {
 
   useEffect(() => {
     return () => update()
-  }, [user]);
+  }, [user])
 
   useEffect(() => {
     if (user) setBoards(user.boards)
@@ -119,7 +118,7 @@ const Table = () => {
             )}
           </div>
         ) : null}
-        <Logout path={()=>history.push(LOGOUT)}/>
+        <Logout path={() => history.push(LOGOUT)} />
         {
           isModalInfoVisible ?
             <Modal
