@@ -15,6 +15,5 @@ body {
   @include fontBorder(1.6rem);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
   min-height: 100%;
 }

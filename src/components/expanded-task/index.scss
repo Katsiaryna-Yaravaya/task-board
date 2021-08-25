@@ -1,11 +1,12 @@
 @import '../../styles/common';
 
 .task {
-  @include positionBlock(absolute, 3rem, null, 3rem, 5rem);
+  @include positionBlock(absolute, 10rem, null, null, 5rem);
   @include size(null, 52rem);
   @include changeColor(1px solid $deepSkyBlue);
   @include indent(2rem 3rem);
   @include fontBorder(null, 10px);
+  //overflow: auto;
   box-sizing: border-box;
 
   .arrow {
@@ -41,14 +42,14 @@
 
   &__description {
     @include fontBorder(2.4rem);
-    @include indent(0 2rem, 0 0 4rem 0);
-    @include size(22rem, 46rem);
+    @include indent(null, 0 0 10rem 0);
+    @include size(11rem, 46rem);
     word-wrap: break-word;
-    overflow: overlay;
+    overflow: auto;
   }
 
   .task-block-buttons {
-    @include positionBlock(absolute, null, null, 4rem, 8rem);
+    @include positionBlock(absolute, null, null, 2rem, 8rem);
 
     &__save {
       @include changeColor(none, $lavanda);
@@ -100,8 +101,8 @@
     }
 
     .arrow {
-      top: -20rem;
-      left: -1rem;
+      top: -12rem;
+      left: -3rem;
     }
   }
 }

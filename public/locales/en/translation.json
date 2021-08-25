@@ -22,5 +22,6 @@
   "credentialsErrorIncorrect": "Email or password are incorrect",
   "credentialsErrorNotValid": "User is not valid",
   "logout": "Logout",
-  "advice":"Tips for all occasions"
+  "advice":"Tips for all occasions",
+  "errorBoundary": "Something went wrong"
 }

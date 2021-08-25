@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import { DATA_REGISTRATION_FORM } from '../../utils'
+import { DATA_REGISTRATION_FORM, getFromLocalStorage } from '../../utils'
 import { getUser, postUser } from '../../../backend/api'
 import { saveUser } from '../../../redux/users/actions'
 import { IS_NOT_REQUEST_VALID, TABLE_BOARD_ROUTE } from '../../../constants/routs'
@@ -12,6 +12,7 @@ import RegistrationButton from './registration-button'
 import Credential from './credential'
 
 import './index.scss'
+import { DEFAULT_BOARDS } from '../../../constants/general'
 
 const Registration = () => {
   const { t } = useTranslation()
@@ -20,15 +21,19 @@ const Registration = () => {
     password: '',
     amount: 3
   })
-  const [isAuthenticated, setIsAuthenticated] = useState(null)
   const [credentialsError, setCredentialsError] = useState(null)
   const { email, password } = credentials
 
-  // TODO you can build useEffect with checking for user in the "user store"
-  // const user = useSelector(state => state.data.user) зачем нам надо проверять на юзера в сторе?
-
   const history = useHistory()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    const user = getFromLocalStorage('user')
+    if (user) {
+      dispatch(saveUser(user))
+      history.push(TABLE_BOARD_ROUTE)
+    }
+  })
 
   const encodedUserCredentials = {
     ...credentials,
@@ -41,44 +46,24 @@ const Registration = () => {
   }
 
   const createUser = async () => {
-    const boards = {
-      'boards': [
-        {
-          'id': 1,
-          'title': 'Do It',
-          'tasks': []
-        },
-        {
-          'id': 2,
-          'title': 'In progress',
-          'tasks': []
-        },
-        {
-          'id': 3,
-          'title': 'Done',
-          'tasks': []
-        }
-      ]
-    }
     let isError = false
-    if (!isAuthenticated) {
-      await getUser(email).then((user) => {
-        user.data.forEach(item => {
-          if (item.email === email) {
-            setCredentialsError(t('credentialsErrorExists'))
-            isError = true
-          }
-        })
+    await getUser(email).then((user) => {
+      user.data.forEach(item => {
+        if (item.email === email) {
+          setCredentialsError(t('credentialsErrorExists'))
+          isError = true
+        }
       })
+    })
 
-      if (isError) return
+    if (isError) return
 
-      const user = { ...credentials, ...boards }
-      postUser(user).then((requestedUser) => {
-        dispatch(saveUser(requestedUser))
-        history.push(TABLE_BOARD_ROUTE)
-      })
-    }
+    const user = { ...credentials, ...DEFAULT_BOARDS }
+
+    postUser(user).then((requestedUser) => {
+      dispatch(saveUser(requestedUser))
+      history.push(TABLE_BOARD_ROUTE)
+    })
   }
 
   const isEmailValid = ({ email }) => {
@@ -91,20 +76,17 @@ const Registration = () => {
       .then(({ data, statusText }) => {
         if (IS_NOT_REQUEST_VALID(statusText)) return
 
-        if (data.length === 0) {
+        if (!data.length) {
           setCredentialsError(t('credentialsErrorNoExists'))
           return
         }
 
-        data[0].password = decodedUserCredentials.password
-        const registeredUser = data[0]
-        setIsAuthenticated(!!registeredUser)
-
-        !!registeredUser && (registeredUser.password === password) ?
+        !!data[0] && data[0].password === password ?
           history.push(TABLE_BOARD_ROUTE) :
           setCredentialsError(t('credentialsErrorIncorrect'))
 
-        dispatch(saveUser(registeredUser))
+        dispatch(saveUser(data[0]))
+        data[0].password = decodedUserCredentials.password
       })
   }
 

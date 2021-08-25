@@ -1,47 +1,52 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { useTheme } from '../../context/theme/theme-state'
 import { updateUsers } from '../../backend/api'
 import ThemeBackground from '../theme-background'
-import Modal from '../modal'
+import { useTheme } from '../../context/theme/theme-state'
 import Tasks from './tasks'
 import AddTask from '../add-task'
 import Logout from '../loguot'
-
+import { getFromLocalStorage, isEmpty } from '../utils'
+import { logout, saveUser } from '../../redux/users/actions'
 import { LOGOUT } from '../../constants/routs'
-import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
 
 const Table = () => {
-  const { t } = useTranslation()
+
   const [boards, setBoards] = useState(null)
   const [currentBoard, setCurrentBoard] = useState(null)
   const [currentItem, setCurrentItem] = useState(null)
-  const [isModalInfoVisible, setIsModalInfoVisible] = useState(false)
-  const [isModalPaymentVisible, setIsModalPaymentVisible] = useState(false)
-  const [password, setPassword] = useState(null)
-  const theme = useTheme()
   const history = useHistory()
-
-  const { REPAYMENT, CONFIRM } = modalTypeConstants
-
+  const theme = useTheme()
   const user = useSelector(state => state.data.user)
 
-  const update = () => {
-    updateUsers(user.id, user).then()
-  }
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const localUser = getFromLocalStorage('user')
+    if (localUser) {
+      dispatch(saveUser(localUser))
+    }
+  }, [])
 
   useEffect(() => {
     return () => update()
-  }, [user])
+  }, [user, boards])
 
   useEffect(() => {
-    if (user) setBoards(user.boards)
+    if (!isEmpty(user)) {
+      localStorage.setItem('user', JSON.stringify(user))
+      setBoards(user.boards)
+    }
   }, [user, user?.boards])
+
+  const update = () => {
+    updateUsers(user.id, user).then()
+    localStorage.setItem('user', JSON.stringify(user))
+  }
 
   const dragOverHandler = (e) => {
     e.preventDefault()
@@ -81,21 +86,14 @@ const Table = () => {
     e.target.style.boxShadow = 'none'
   }
 
-  const handleOpenModal = useCallback(() => setIsModalInfoVisible(true), [])
-  const handlePayment = useCallback(() => {
-    setIsModalInfoVisible(false)
-    setIsModalPaymentVisible(true)
-  }, [])
-  const handleCancel = useCallback(() => {
-    setIsModalPaymentVisible(false)
-    setIsModalInfoVisible(false)
-  }, [])
-  const handleSubmit = useCallback(() => setIsModalPaymentVisible(false), [])
-  const handleChange = useCallback((e) => setPassword(e.target.value), [])
+  const logoutUser = () => {
+    dispatch(logout(user))
+    history.push(LOGOUT)
+  }
 
   return (
     <>
-      <ThemeBackground openModal={handleOpenModal} />
+      <ThemeBackground />
       <AddTask />
       <div className='app' style={theme.theme}>
         {boards ? boards.map(board =>
@@ -118,29 +116,7 @@ const Table = () => {
             )}
           </div>
         ) : null}
-        <Logout path={() => history.push(LOGOUT)} />
-        {
-          isModalInfoVisible ?
-            <Modal
-              title={t('modalTitleConfirm')}
-              type={CONFIRM}
-              body={t('modalBodyConfirm')}
-              onClickCancel={handleCancel}
-              handlePayment={handlePayment}
-            /> : null
-        }
-        {
-          isModalPaymentVisible ?
-            <Modal
-              title={t('modalTitlePayment')}
-              type={REPAYMENT}
-              body={<input onChange={handleChange} className='body__input' />}
-              password={password}
-              btnSubmitTitle={'submit'}
-              onClickSubmit={handleSubmit}
-              onClickCancel={handleCancel}
-            /> : null
-        }
+        <Logout path={logoutUser} />
       </div>
     </>
   )

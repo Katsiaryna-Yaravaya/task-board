@@ -4,6 +4,7 @@
   @include size(100vh, 100vw);
   background: url(./bg.jpg) no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 input:-webkit-autofill,

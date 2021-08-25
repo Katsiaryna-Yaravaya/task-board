@@ -8,7 +8,6 @@ import ExpandedTask from '../components/expanded-task'
 import './index.scss'
 
 const App = () => {
-
   const { t, i18n } = useTranslation('translation')
 
   const handleClick = (lang) => {

@@ -9,7 +9,8 @@ const themes = {
   },
   dark: {
     //темно синий
-    background: 'linear-gradient(to left top, #517b49, #006c58, #005966, #004468, #002c59, #06265f, #1b1d62, #2f0c61, #3f0e85, #500faa, #620ed1, #740bfa)'
+    background: 'linear-gradient(to left top, #517b49, #006c58, #005966, #004468, #002c59, #06265f, #1b1d62, #2f0c61, #3f0e85, #500faa, #620ed1, #740bfa)',
+    // color: 'white'
   },
   neutral: {
     //закат

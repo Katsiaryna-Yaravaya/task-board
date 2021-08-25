@@ -22,5 +22,6 @@
   "credentialsErrorIncorrect": "Почта или пароль неверны",
   "credentialsErrorNotValid": "Пользователь не валиден",
   "logout": "Выйти",
-  "advice":"Советы на все случаи жизни"
+  "advice":"Советы на все случаи жизни",
+  "errorBoundary": "Что-то пошло не так"
 }

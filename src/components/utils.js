@@ -20,7 +20,7 @@ export const DATA_REGISTRATION_FORM = [
     name: 'Sign in',
     value: 'signIn',
     className: 'sign-in'
-},
+  },
   {
     type: 'submit',
     name: 'registration',
@@ -29,4 +29,21 @@ export const DATA_REGISTRATION_FORM = [
   }
 ]
 
+export const getFromLocalStorage = key => {
+  let data = localStorage.getItem(key)
+  if (key === 'user') {
+    if (data) {
+      return JSON.parse(localStorage.getItem(key))
+    } else {
+      return null
+    }
+  }
+}
 
+export const isEmpty =(obj) => {
+  for(let  key in obj)
+  {
+    return false;
+  }
+  return true;
+}

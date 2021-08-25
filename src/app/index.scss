@@ -7,6 +7,7 @@
 .app {
   @include size(100vh, 100vw);
   @include flexBlock();
+  overflow: hidden;
 }
 
 .language {

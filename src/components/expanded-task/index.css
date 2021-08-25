@@ -76,8 +76,7 @@
 
 .task {
   position: absolute;
-  top: 3rem;
-  bottom: 3rem;
+  top: 10rem;
   left: 5rem;
   width: 52rem;
   border: 1px solid #00bfff;
@@ -121,16 +120,15 @@
 }
 .task__description {
   font-size: 2.4rem;
-  padding: 0 2rem;
-  margin: 0 0 4rem 0;
-  height: 22rem;
+  margin: 0 0 10rem 0;
+  height: 11rem;
   width: 46rem;
   word-wrap: break-word;
-  overflow: overlay;
+  overflow: auto;
 }
 .task .task-block-buttons {
   position: absolute;
-  bottom: 4rem;
+  bottom: 2rem;
   left: 8rem;
 }
 .task .task-block-buttons__save {
@@ -174,8 +172,8 @@
     height: 24rem;
   }
   .task .arrow {
-    top: -20rem;
-    left: -1rem;
+    top: -12rem;
+    left: -3rem;
   }
 }
 @media (max-width: 39em) {

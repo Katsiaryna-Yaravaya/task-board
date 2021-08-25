@@ -84,6 +84,16 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           boards: savedTask
         }
       }
+    // case types.userActionTypes.GET_FROM_LOCAL_STORAGE:
+    //   return {
+    //     ...state,
+    //     user: action.payload
+    //   }
+    case types.userActionTypes.LOGOUT_USER:
+      return {
+        ...state,
+        user: {}
+      }
 
     default:
       return state
