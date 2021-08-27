@@ -7,6 +7,7 @@ import Modal from '../modal'
 import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
+import { useSelector } from 'react-redux'
 
 const ThemeBackground = () => {
 
@@ -24,8 +25,6 @@ const ThemeBackground = () => {
   }
 
   const handleClickButton = () => setIsOpenButton(change => !change)
-
-
   const handleOpenModal = useCallback(() => setIsModalInfoVisible(true), [])
   const handlePayment = useCallback(() => {
     setIsModalInfoVisible(false)

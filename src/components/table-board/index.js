@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
@@ -22,6 +22,7 @@ const Table = () => {
   const history = useHistory()
   const theme = useTheme()
   const user = useSelector(state => state.data.user)
+  const isLogout = useSelector(state => state.data.isLogout)
 
   const dispatch = useDispatch()
 
@@ -34,19 +35,21 @@ const Table = () => {
 
   useEffect(() => {
     return () => update()
-  }, [user, boards])
+  }, [])
 
   useEffect(() => {
-    if (!isEmpty(user)) {
+    if (!isEmpty(user) && !isLogout) {
       localStorage.setItem('user', JSON.stringify(user))
       setBoards(user.boards)
     }
-  }, [user, user?.boards])
+  }, [user, user?.boards, isLogout])
 
-  const update = () => {
-    updateUsers(user.id, user).then()
-    localStorage.setItem('user', JSON.stringify(user))
-  }
+  const update = useCallback(() => {
+    if (!isLogout) {
+      updateUsers(user.id, user).then()
+      localStorage.setItem('user', JSON.stringify(user))
+    }
+  }, [isLogout, user.id, user ])
 
   const dragOverHandler = (e) => {
     e.preventDefault()
@@ -87,7 +90,8 @@ const Table = () => {
   }
 
   const logoutUser = () => {
-    dispatch(logout(user))
+    window.localStorage.clear()
+    dispatch(logout())
     history.push(LOGOUT)
   }
 

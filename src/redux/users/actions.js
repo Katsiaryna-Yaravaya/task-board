@@ -1,20 +1,15 @@
 import * as types from './types'
 import axios from 'axios'
 
-export const saveUser = (user) => {
-  // localStorage.setItem('user', JSON.stringify(user))
-  return {
+export const saveUser = (user) => ({
     type: types.userActionTypes.SET_USER,
     payload: user
-  }
-}
+})
 
-export const saveTask = (task) => {
-  return {
+export const saveTask = (task) => ({
     type: types.userActionTypes.SET_TASK,
     payload: task
-  }
-}
+})
 
 export const saveIdTask = (taskId) => ({
   type: types.userActionTypes.SET_TASK_ID,
@@ -31,15 +26,10 @@ export const savedTask = (description) => ({
   payload: description
 })
 
-// export const getFromLocal = (payload) => ({
-//   type: types.userActionTypes.GET_FROM_LOCAL_STORAGE,
-//   payload
-// })
+export const logout = () => ({
+    type: types.userActionTypes.LOGOUT_USER
+})
 
-export const logout = (user) => {
-  localStorage.clear()
-  return {
-    type: types.userActionTypes.LOGOUT_USER,
-    payload: user
-  }
-}
+export const login = () => ({
+    type: types.userActionTypes.LOGIN_USER
+})

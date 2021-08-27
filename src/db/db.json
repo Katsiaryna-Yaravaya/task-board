@@ -43,7 +43,7 @@
       "id": 12,
       "email": "1111@mail.com",
       "password": "qwert",
-      "amount": 2,
+      "amount": 3,
       "boards": [
         {
           "id": 1,
@@ -69,7 +69,13 @@
         {
           "id": 2,
           "title": "In progress",
-          "tasks": []
+          "tasks": [
+            {
+              "id": "d41bb6d5-8f1c-4a83-93a4-2d2a0fcfcd5a",
+              "title": "fredddddddddddddddddddddddddddddddd",
+              "description": ""
+            }
+          ]
         },
         {
           "id": 3,

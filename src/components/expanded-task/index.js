@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom'
 import { TABLE_BOARD_ROUTE } from '../../constants/routs'
 import { deleteTask, savedTask } from '../../redux/users/actions'
 import Advice from '../advice'
-import ThemeBackground from '../theme-background'
 import { useTheme } from '../../context/theme/theme-state'
 
 import save from './save.png'
@@ -58,8 +57,7 @@ const ExpandedTask = () => {
   }
 
   return (
-    <div style={theme.theme} className='app'>
-      <ThemeBackground />
+    <div style={theme.theme} className='app aside'>
       <div className='task'>
         <button className='arrow' onClick={() => history.push(TABLE_BOARD_ROUTE)}>
           <img className='arrow__img' src={arrow} alt='' />
@@ -89,6 +87,7 @@ const ExpandedTask = () => {
           <button className='task-block-buttons__download task-button'>
             <img className='task-button__img' src={download} alt='' />
           </button>
+          <p className='task-block-buttons__text'>coming soon...</p>
         </div>
       </div>
       <div>

@@ -74,6 +74,11 @@
   error900: #3c0000;
 }
 
+.aside {
+  background: url(./think.png) no-repeat right;
+  background-size: auto;
+}
+
 .task {
   position: absolute;
   top: 10rem;
@@ -128,7 +133,7 @@
 }
 .task .task-block-buttons {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   left: 8rem;
 }
 .task .task-block-buttons__save {
@@ -150,6 +155,10 @@
   box-shadow: 0 0 41px 17px rgba(98, 145, 240, 0.72);
   cursor: pointer;
 }
+.task .task-block-buttons__text {
+  display: flex;
+  justify-content: flex-end;
+}
 .task .task-block-buttons .task-button {
   height: 8rem;
   width: 8rem;
@@ -161,9 +170,16 @@
 }
 
 @media (max-width: 56.8em) {
+  .aside {
+    background: none;
+  }
+
   .task {
     top: 24rem;
     bottom: auto;
+  }
+  .task__title {
+    width: 30rem;
   }
   .task__edit {
     height: 20rem;
@@ -181,7 +197,7 @@
     width: 42rem;
   }
   .task__title {
-    width: 36rem;
+    width: 26rem;
   }
   .task__edit {
     height: 20rem;
@@ -193,10 +209,14 @@
     width: 36rem;
   }
   .task .task-block-buttons {
-    margin-left: -3rem;
     position: relative;
-    margin-top: 5rem;
     bottom: auto;
+    margin-left: -3rem;
+    margin-top: 5rem;
+  }
+  .task .task-block-buttons__text {
+    position: absolute;
+    left: 23rem;
   }
   .task .task-block-buttons .task-button {
     height: 6rem;

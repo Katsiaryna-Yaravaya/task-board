@@ -3,14 +3,12 @@ import ThemeContext from './theme-context'
 
 const themes = {
   light: {
-    // радужно бледный
-    background: 'linear-gradient(to bottom, #b721ff, #2af598, #fec051, #fee140, #fa709a)'
-
+    // розово-фиолетовый
+    background: 'linear-gradient(to right, #fc5c7d, #6a82fb);'
   },
   dark: {
-    //темно синий
+    //темно-синий
     background: 'linear-gradient(to left top, #517b49, #006c58, #005966, #004468, #002c59, #06265f, #1b1d62, #2f0c61, #3f0e85, #500faa, #620ed1, #740bfa)',
-    // color: 'white'
   },
   neutral: {
     //закат

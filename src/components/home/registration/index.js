@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import { DATA_REGISTRATION_FORM, getFromLocalStorage } from '../../utils'
 import { getUser, postUser } from '../../../backend/api'
-import { saveUser } from '../../../redux/users/actions'
+import { login, saveUser } from '../../../redux/users/actions'
 import { IS_NOT_REQUEST_VALID, TABLE_BOARD_ROUTE } from '../../../constants/routs'
 
 import RegistrationButton from './registration-button'
@@ -24,14 +24,18 @@ const Registration = () => {
   const [credentialsError, setCredentialsError] = useState(null)
   const { email, password } = credentials
 
+  const isLogout = useSelector(state => state.data.isLogout)
+
   const history = useHistory()
   const dispatch = useDispatch()
 
   useEffect(() => {
     const user = getFromLocalStorage('user')
-    if (user) {
+    if (user && !isLogout) {
       dispatch(saveUser(user))
       history.push(TABLE_BOARD_ROUTE)
+    } else {
+      window.localStorage.clear()
     }
   })
 
@@ -96,6 +100,8 @@ const Registration = () => {
 
   const handleSubmit = (e, name) => {
     e.preventDefault()
+
+    dispatch(login())
 
     if (name === 'Sign in') signIn()
     if (name === 'registration') registration()

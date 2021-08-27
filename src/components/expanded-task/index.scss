@@ -1,12 +1,16 @@
 @import '../../styles/common';
 
+.aside{
+  background: url(./think.png)  no-repeat right;
+  background-size: auto;
+}
+
 .task {
   @include positionBlock(absolute, 10rem, null, null, 5rem);
   @include size(null, 52rem);
   @include changeColor(1px solid $deepSkyBlue);
   @include indent(2rem 3rem);
   @include fontBorder(null, 10px);
-  //overflow: auto;
   box-sizing: border-box;
 
   .arrow {
@@ -17,8 +21,8 @@
     @include changeColor(none, $lightBlue);
     box-shadow: 0 0 16px 9px rgba(145, 180, 250, 0.94);
 
-        &__img {
-          @include size(4rem, 4rem);
+    &__img {
+      @include size(4rem, 4rem);
     }
   }
 
@@ -49,7 +53,7 @@
   }
 
   .task-block-buttons {
-    @include positionBlock(absolute, null, null, 2rem, 8rem);
+    @include positionBlock(absolute, null, null, 1rem, 8rem);
 
     &__save {
       @include changeColor(none, $lavanda);
@@ -59,7 +63,7 @@
 
     &__delete {
       @include changeColor(none, $red);
-      box-shadow:0 0 41px 17px rgba(255, 0, 0, 0.72);
+      box-shadow: 0 0 41px 17px rgba(255, 0, 0, 0.72);
       @include indent(null, 0 6rem);
       @include focus();
     }
@@ -70,9 +74,13 @@
       @include focus();
     }
 
+    &__text {
+      @include flexBlock(flex, null, flex-end);
+    }
+
     .task-button {
       @include size(8rem, 8rem);
-      @include fontBorder(null,50%);
+      @include fontBorder(null, 50%);
 
       &__img {
         @include size(6rem, 6rem);
@@ -88,16 +96,25 @@
 
 
 @include for-tablet-portrait-up {
+
+  .aside{
+    background:none;
+  }
+
   .task {
     top: 24rem;
     bottom: auto;
 
+    &__title {
+      @include size(null, 30rem);
+    }
+
     &__edit {
-      height: 20rem;
+      @include size(20rem);
     }
 
     &__description {
-      height: 24rem;
+      @include size(24rem);
     }
 
     .arrow {
@@ -110,28 +127,29 @@
 @include for-phone-tablet-only {
 
   .task {
-    width: 42rem;
+    @include size(null, 42rem);
 
     &__title {
-      width: 36rem;
+      @include size(null, 26rem);
     }
 
     &__edit {
-      height: 20rem;
-      width: 36rem;
+      @include size(20rem, 36rem);
       font-size: 2rem;
     }
 
     &__description {
-      height: 28rem;
-      width: 36rem;
+      @include size(28rem, 36rem);
     }
 
     .task-block-buttons {
+      @include positionBlock(relative, null, null, auto);
       margin-left: -3rem;
-      position: relative;
       margin-top: 5rem;
-      bottom: auto;
+
+      &__text {
+        @include positionBlock(absolute, null, null, null, 23rem);
+      }
 
       .task-button {
         @include size(6rem, 6rem);

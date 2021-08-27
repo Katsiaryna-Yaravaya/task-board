@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 const INITIAL_STATE = {
   user: {},
-  taskId: ''
+  taskId: '',
+  isLogout: false
 }
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -84,15 +85,15 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           boards: savedTask
         }
       }
-    // case types.userActionTypes.GET_FROM_LOCAL_STORAGE:
-    //   return {
-    //     ...state,
-    //     user: action.payload
-    //   }
     case types.userActionTypes.LOGOUT_USER:
       return {
-        ...state,
-        user: {}
+        user: {},
+        isLogout: true
+      }
+      case types.userActionTypes.LOGIN_USER:
+      return {
+        user: {},
+        isLogout: false
       }
 
     default:
