@@ -2,9 +2,8 @@ import * as types from './types'
 import { v4 as uuidv4 } from 'uuid'
 
 const INITIAL_STATE = {
-  user: {},
-  taskId: '',
-  isLogout: false
+  user: null,
+  taskId: ''
 }
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -28,7 +27,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
           return {
             id: board.id,
             title: board.title,
-            tasks: board.tasks.concat({ id: uuidv4(), title: action.payload, description: '' })
+            tasks: board.tasks.concat({
+              id: uuidv4(),
+              title: action.payload,
+              description: ''
+            })
           }
         }
         return board
@@ -59,7 +62,6 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         user: {
           ...state.user,
           boards: deletedTask
-
         }
       }
     case types.userActionTypes.SAVE_TASK:
@@ -87,13 +89,7 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       }
     case types.userActionTypes.LOGOUT_USER:
       return {
-        user: {},
-        isLogout: true
-      }
-      case types.userActionTypes.LOGIN_USER:
-      return {
-        user: {},
-        isLogout: false
+        user: null
       }
 
     default:

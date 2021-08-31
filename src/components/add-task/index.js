@@ -11,7 +11,7 @@ const AddTask = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()
 
-  const submitHandler = (event) => {
+  const submitHandler = event => {
     event.preventDefault()
 
     if (value.trim()) {
@@ -20,18 +20,18 @@ const AddTask = () => {
     }
   }
 
-  const changeHandler = (event) => {
-    setValue(event.target.value)
-  }
+  const changeHandler = ({ target }) => setValue(target.value)
 
   return (
-    <form className='form-bord' onSubmit={submitHandler}>
+    <form className="form-bord" onSubmit={submitHandler}>
       <input
-        className='form-bord__todo'
+        className="form-bord__todo"
         value={value}
         onChange={changeHandler}
       />
-      <button className='form-bord__button' type='submit'>{t('add')}</button>
+      <button className="form-bord__button" type="submit">
+        {t('add')}
+      </button>
     </form>
   )
 }

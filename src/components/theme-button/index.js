@@ -1,22 +1,26 @@
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-import { THEME_DARK, THEME_LIGHT, THEME_NEUTRAL } from '../../constants/theme'
-
 import './index.scss'
+import { BUTTON_THEME } from '../utils'
 
-const ThemeButton = ({themeButton}) => {
-
-  const {t} = useTranslation()
+const ThemeButton = ({ themeButton }) => {
+  const { t } = useTranslation()
 
   return (
-    <div className='theme-choose'>
-      <button className='button-theme-light theme__button' value={THEME_LIGHT} onClick={themeButton}>{t('light')}
-      </button>
-      <button className='button-theme-dark theme__button' value={THEME_DARK} onClick={themeButton}>{t('dark')}
-      </button>
-      <button className='button-theme-neutral theme__button' value={THEME_NEUTRAL} onClick={themeButton}>{t('neutral')}
-      </button>
+    <div className="theme-choose">
+      {BUTTON_THEME.map(({ className, value, label }, idx) => {
+        return (
+          <button
+            key={idx}
+            className={className}
+            value={value}
+            onClick={themeButton}
+          >
+            {t(label)}
+          </button>
+        )
+      })}
     </div>
   )
 }

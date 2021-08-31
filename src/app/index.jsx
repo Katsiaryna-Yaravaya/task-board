@@ -1,31 +1,47 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import Registration from '../components/home/registration'
-import Table from '../components/table-board'
-import ExpandedTask from '../components/expanded-task'
+import { Registration, Table, ExpandedTask, PrivateRoute } from '../components'
+
+import {
+  EXPANDED_TASK_ROUTE,
+  REGISTRATION,
+  TABLE_BOARD_ROUTE
+} from '../constants/routs'
 
 import './index.scss'
 
 const App = () => {
-  const { t, i18n } = useTranslation('translation')
-
-  const handleClick = (lang) => {
-    i18n.changeLanguage(lang).then()
-  }
+  const { i18n } = useTranslation('translation')
 
   return (
-    <div className='app'>
-      <div className='language'>
-        <button className='language__button' onClick={() => handleClick('en')}>English</button>
-        <button className='language__button' onClick={() => handleClick('ru')}>Русский</button>
+    <BrowserRouter>
+      <div className="app">
+        <div className="language">
+          <button
+            className="language__button"
+            onClick={() => i18n.changeLanguage('en')}
+          >
+            English
+          </button>
+          <button
+            className="language__button"
+            onClick={() => i18n.changeLanguage('ru')}
+          >
+            Русский
+          </button>
+        </div>
+        <Switch>
+          <Route exact path={REGISTRATION} component={Registration} />
+          <PrivateRoute exact path={TABLE_BOARD_ROUTE} component={Table} />
+          <PrivateRoute
+            exact
+            path={EXPANDED_TASK_ROUTE}
+            component={ExpandedTask}
+          />
+        </Switch>
       </div>
-      <Switch>
-        <Route exact path='/' component={Registration} />
-        <Route exact path='/table-board' component={Table} />
-        <Route exact path='/table-board/task' component={ExpandedTask} />
-      </Switch>
-    </div>
+    </BrowserRouter>
   )
 }
 

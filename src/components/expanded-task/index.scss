@@ -1,7 +1,7 @@
 @import '../../styles/common';
 
-.aside{
-  background: url(./think.png)  no-repeat right;
+.aside {
+  background: url(../../assets/think.png) no-repeat right;
   background-size: auto;
 }
 
@@ -51,42 +51,6 @@
     word-wrap: break-word;
     overflow: auto;
   }
-
-  .task-block-buttons {
-    @include positionBlock(absolute, null, null, 1rem, 8rem);
-
-    &__save {
-      @include changeColor(none, $lavanda);
-      box-shadow: 0 0 49px 30px rgba(222, 169, 241, 1);
-      @include focus();
-    }
-
-    &__delete {
-      @include changeColor(none, $red);
-      box-shadow: 0 0 41px 17px rgba(255, 0, 0, 0.72);
-      @include indent(null, 0 6rem);
-      @include focus();
-    }
-
-    &__download {
-      @include changeColor(none, $lightBlue);
-      box-shadow: 0 0 41px 17px rgba(98, 145, 240, 0.72);
-      @include focus();
-    }
-
-    &__text {
-      @include flexBlock(flex, null, flex-end);
-    }
-
-    .task-button {
-      @include size(8rem, 8rem);
-      @include fontBorder(null, 50%);
-
-      &__img {
-        @include size(6rem, 6rem);
-      }
-    }
-  }
 }
 
 
@@ -96,9 +60,8 @@
 
 
 @include for-tablet-portrait-up {
-
-  .aside{
-    background:none;
+  .aside {
+    background: none;
   }
 
   .task {
@@ -125,7 +88,6 @@
 }
 
 @include for-phone-tablet-only {
-
   .task {
     @include size(null, 42rem);
 
@@ -140,24 +102,6 @@
 
     &__description {
       @include size(28rem, 36rem);
-    }
-
-    .task-block-buttons {
-      @include positionBlock(relative, null, null, auto);
-      margin-left: -3rem;
-      margin-top: 5rem;
-
-      &__text {
-        @include positionBlock(absolute, null, null, null, 23rem);
-      }
-
-      .task-button {
-        @include size(6rem, 6rem);
-
-        &__img {
-          @include size(4rem, 4rem);
-        }
-      }
     }
   }
 }

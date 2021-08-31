@@ -7,33 +7,40 @@ import { saveIdTask } from '../../../redux/users/actions'
 
 import './index.scss'
 
-const Tasks = ({ onDragOver, onDragLeave, onDragStart, onDragEnd, onDrop, task }) => {
-
+const Tasks = ({
+  onDragOver,
+  onDragLeave,
+  onDragStart,
+  onDragEnd,
+  onDrop,
+  task
+}) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const clickHandler =()=> {
+  const clickHandler = () => {
     dispatch(saveIdTask(task.id))
     history.push(EXPANDED_TASK_ROUTE)
   }
 
   return (
-    <div onDragOver={onDragOver}
-         onDragLeave={onDragLeave}
-         onDragStart={onDragStart}
-         onDragEnd={onDragEnd}
-         onDrop={onDrop}
-         draggable={true}
-         onClick={clickHandler}
-         className='item'
-         title={task.title}
+    <div
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDragStart={onDragStart}
+      onDragEnd={onDragEnd}
+      onDrop={onDrop}
+      draggable={true}
+      onClick={clickHandler}
+      className="item"
+      title={task.title}
     >
       {task.title}
     </div>
   )
 }
 
-Tasks.propTypes ={
+Tasks.propTypes = {
   onDragOver: PropTypes.func,
   onDragLeave: PropTypes.func,
   onDragStart: PropTypes.func,

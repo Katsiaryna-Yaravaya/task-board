@@ -22,14 +22,12 @@
 
 
 @include for-desktop-small-only {
-
   .advice {
     left: 58rem;
   }
 }
 
 @include for-tablet-portrait-up {
-
   .advice {
     @include positionBlock(null, 10rem, null, null, 10rem);
     max-width: 46rem;
@@ -41,7 +39,6 @@
 }
 
 @include for-phone-tablet-only {
-
   .advice {
     max-width: 36rem;
 

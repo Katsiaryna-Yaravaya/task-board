@@ -1,27 +1,40 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
 import { useTheme } from '../../context/theme/theme-state'
-import ThemeButton from '../theme-button'
-import Modal from '../modal'
+
+import { Modal, ThemeButton } from '../index'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateUsers } from '../../backend/api'
+import { saveUser } from '../../redux/users/actions'
+
 import { modalTypeConstants } from '../../constants/modal'
 
 import './index.scss'
-import { useSelector } from 'react-redux'
 
 const ThemeBackground = () => {
-
   const { t } = useTranslation()
   const [isOpenButton, setIsOpenButton] = useState(false)
   const [isModalInfoVisible, setIsModalInfoVisible] = useState(false)
   const [isModalPaymentVisible, setIsModalPaymentVisible] = useState(false)
   const [password, setPassword] = useState(null)
+  const [valueTheme, setValueTheme] = useState('')
   const isTheme = useTheme()
+  const dispatch = useDispatch()
   const { REPAYMENT, CONFIRM } = modalTypeConstants
 
-  const handleThemeButton = (e) => {
-    isTheme.change(e.currentTarget.value)
-    handleOpenModal()
+  const { user } = useSelector(state => state.data)
+
+  const handleThemeButton = e => {
+    const themeValue = e.currentTarget.value
+    isTheme.change(themeValue)
+    setValueTheme(themeValue)
+    let isPayedTheme = user.theme.paymentTheme.includes(themeValue)
+    if (!isPayedTheme) {
+      handleOpenModal()
+    } else {
+      const userWithTheme = userConcatenation(user, themeValue)
+      dispatch(saveUser(userWithTheme))
+    }
   }
 
   const handleClickButton = () => setIsOpenButton(change => !change)
@@ -34,39 +47,57 @@ const ThemeBackground = () => {
     setIsModalPaymentVisible(false)
     setIsModalInfoVisible(false)
   }, [])
-  const handleSubmit = useCallback(() => setIsModalPaymentVisible(false), [])
-  const handleChange = useCallback((e) => setPassword(e.target.value), [])
+
+  const userConcatenation = (user, concat) => {
+    return {
+      ...user,
+      theme: {
+        currentTheme: concat,
+        paymentTheme: [...user.theme.paymentTheme].concat(concat)
+      }
+    }
+  }
+
+  const handleButtonCancel = () => {
+    handleCancel()
+    isTheme.change(user.theme.currentTheme)
+  }
+
+  const handleSubmit = () => {
+    const userWithTheme = userConcatenation(user, valueTheme)
+    dispatch(saveUser(userWithTheme))
+    updateUsers(user.id, userWithTheme).then()
+    setIsModalPaymentVisible(false)
+  }
+
+  const handleChange = useCallback(e => setPassword(e.target.value), [])
 
   return (
     <>
-      <div className='dropdown' onClick={handleClickButton}>
-        <button className='dropdown__button'>{t('theme')}</button>
-        {isOpenButton && (
-          <ThemeButton themeButton={handleThemeButton} />
-        )}
+      <div className="dropdown" onClick={handleClickButton}>
+        <button className="dropdown__button">{t('theme')}</button>
+        {isOpenButton ? <ThemeButton themeButton={handleThemeButton} /> : null}
       </div>
-      {
-        isModalInfoVisible ?
-          <Modal
-            title={t('modalTitleConfirm')}
-            type={CONFIRM}
-            body={t('modalBodyConfirm')}
-            onClickCancel={handleCancel}
-            handlePayment={handlePayment}
-          /> : null
-      }
-      {
-        isModalPaymentVisible ?
-          <Modal
-            title={t('modalTitlePayment')}
-            type={REPAYMENT}
-            body={<input onChange={handleChange} className='body__input' />}
-            password={password}
-            btnSubmitTitle={'submit'}
-            onClickSubmit={handleSubmit}
-            onClickCancel={handleCancel}
-          /> : null
-      }
+      {isModalInfoVisible ? (
+        <Modal
+          title={t('modalTitleConfirm')}
+          type={CONFIRM}
+          body={t('modalBodyConfirm')}
+          onClickCancel={handleButtonCancel}
+          handlePayment={handlePayment}
+        />
+      ) : null}
+      {isModalPaymentVisible ? (
+        <Modal
+          title={t('modalTitlePayment')}
+          type={REPAYMENT}
+          body={<input onChange={handleChange} className="body__input" />}
+          password={password}
+          btnSubmitTitle={'submit'}
+          onClickSubmit={handleSubmit}
+          onClickCancel={handleButtonCancel}
+        />
+      ) : null}
     </>
   )
 }

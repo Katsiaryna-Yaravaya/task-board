@@ -1,5 +1,4 @@
 export const TABLE_BOARD_ROUTE = '/table-board'
-export const IS_NOT_REQUEST_VALID = (statusText) => statusText !== 'OK'
 export const EXPANDED_TASK_ROUTE = '/table-board/task'
-export const LOGOUT = '/'
-
+export const REGISTRATION = '/'
+export const ADVICE_APP = 'https://api.adviceslip.com/advice'

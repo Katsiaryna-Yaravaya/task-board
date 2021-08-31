@@ -42,8 +42,8 @@
     {
       "id": 12,
       "email": "1111@mail.com",
-      "password": "qwert",
-      "amount": 3,
+      "password": "11111",
+      "amount": 1,
       "boards": [
         {
           "id": 1,
@@ -53,11 +53,6 @@
               "id": "4432e0ec-1f78-4b0d-bb32-4cafce28bd24",
               "title": "vg",
               "description": "oikjio[kpikpo\noikoikoikoikikikikiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii89uiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii\niii89uiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiig\n\n"
-            },
-            {
-              "id": "155cb163-9e49-4cbe-bc8b-13423547aca7",
-              "title": "n h",
-              "description": ""
             },
             {
               "id": "06e228e6-5c91-4999-bf13-1f09242fce64",
@@ -71,126 +66,36 @@
           "title": "In progress",
           "tasks": [
             {
-              "id": "d41bb6d5-8f1c-4a83-93a4-2d2a0fcfcd5a",
-              "title": "fredddddddddddddddddddddddddddddddd",
+              "id": "0662e3e8-457a-4700-8611-c28ed61092b3",
+              "title": "hbhj",
               "description": ""
+            },
+            {
+              "id": "155cb163-9e49-4cbe-bc8b-13423547aca7",
+              "title": "n h",
+              "description": "hnygftnjdfty"
             }
           ]
         },
         {
           "id": 3,
           "title": "Done",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": "14e3c137-86df-4ae3-983b-ab6bb72a26b8",
-      "email": "tdje@mail.com",
-      "password": "7556",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": "1e1b117f-e7b2-469f-8e20-a09f6266eb5c",
-      "email": "22222@mail.com",
-      "password": "qwert",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": "21347f41-61e1-4b1c-adc8-a8254642c7ed",
-      "email": "222222@mail.com",
-      "password": "qwert",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
-          "tasks": []
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
-        }
-      ]
-    },
-    {
-      "id": "6900cb8a-31ba-4e4b-9201-f4f4bcf2a6a8",
-      "email": "fcs@mail.com",
-      "password": "jyhrfhs",
-      "amount": 3,
-      "boards": [
-        {
-          "id": 1,
-          "title": "Do It",
           "tasks": [
             {
-              "id": "c53ed559-54d1-4f94-9061-5428f4b112c2",
-              "title": "hgtf",
-              "description": ""
-            },
-            {
-              "id": "4a92543a-0221-453a-bd62-481ceba2f706",
-              "title": "h",
-              "description": ""
-            },
-            {
-              "id": "c763e95b-1d35-4a5b-96f8-0ad471512a7d",
-              "title": "h",
+              "id": "bbf2d946-1e79-484c-9004-0f56239e123f",
+              "title": "csz",
               "description": ""
             }
           ]
-        },
-        {
-          "id": 2,
-          "title": "In progress",
-          "tasks": []
-        },
-        {
-          "id": 3,
-          "title": "Done",
-          "tasks": []
         }
-      ]
+      ],
+      "theme": {
+        "currentTheme": "dark",
+        "paymentTheme": [
+          "light",
+          "neutral"
+        ]
+      }
     }
   ]
 }

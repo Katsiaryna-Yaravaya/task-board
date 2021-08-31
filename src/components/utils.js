@@ -29,21 +29,30 @@ export const DATA_REGISTRATION_FORM = [
   }
 ]
 
-export const getFromLocalStorage = key => {
-  let data = localStorage.getItem(key)
-  if (key === 'user') {
-    if (data) {
-      return JSON.parse(localStorage.getItem(key))
-    } else {
-      return null
-    }
+export const BUTTON_THEME = [
+  {
+    value: 'light',
+    className: 'button-theme-light theme__button',
+    label: 'light'
+  },
+  {
+    value: 'dark',
+    className: 'button-theme-dark theme__button',
+    label: 'dark'
+  },
+  {
+    value: 'neutral',
+    className: 'button-theme-neutral theme__button',
+    label: 'neutral'
   }
+]
+
+// TODO please try to find another solution
+export const isEmpty = obj => {
+  for (let key in obj) {
+    return false
+  }
+  return true
 }
 
-export const isEmpty =(obj) => {
-  for(let  key in obj)
-  {
-    return false;
-  }
-  return true;
-}
+export const IS_NOT_REQUEST_VALID = statusText => statusText !== 'OK'

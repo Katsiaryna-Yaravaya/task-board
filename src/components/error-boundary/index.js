@@ -2,31 +2,33 @@ import { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 
 class ErrorBoundary extends Component {
-
   state = {
     hasError: false
   }
 
   static getDerivedStateFromError(error) {
-    // Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
+    // Update state so the next render will show the fallback UI.
     return {
       hasError: true
     }
   }
 
   componentDidCatch(error, errorInfo) {
-    // Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
+    // You can also log the error to an error reporting service
     console.log(error)
     console.log(errorInfo)
   }
 
   render() {
-    if (this.state.hasError) {
-      // Можно отрендерить запасной UI произвольного вида
-      return <h1 className='errorBoundary'> {this.props.t('errorBoundary')} </h1>
-    }
-    return this.props.children
+    const { t, children } = this.props
+
+    // You can render any custom fallback UI
+    return this.state.hasError ? (
+      <h1 className="errorBoundary">{t('errorBoundary')}</h1>
+    ) : (
+      children
+    )
   }
 }
 
-export default withTranslation()(ErrorBoundary)
+export default withTranslation('translation')(ErrorBoundary)

@@ -1,5 +1,3 @@
-@import 'palette';
-
 $white: #ffffff;
 $darkWhite: #fcfcf9;
 $red: #FF0000;
@@ -18,23 +16,3 @@ $lavanda: #e5aafa;
 $deepSkyBlue: #00bfff;
 $piece: #fc9de1;
 $purple: #6439a8;
-
-$colors: (
-        text: $text,
-        bg: $bg,
-        primary: $primary,
-        secondary: $secondary,
-        tertiary: $tertiary,
-        info: $info,
-        success: $success,
-        warning: $warning,
-        error: $error
-);
-
-:export {
-  @each $color, $colorMap in $colors {
-    @each $shade, $value in $colorMap {
-      #{$color + $shade}: $value;
-    }
-  }
-}
