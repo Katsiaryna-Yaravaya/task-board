@@ -62,12 +62,7 @@
 
 
 @include for-tablet-portrait-up {
-  .app {
-    height: 136vh !important;
-    width: 123vw !important;
-  }
-
-  .aside {
+    .aside {
     background: none;
   }
 
@@ -98,11 +93,6 @@
 }
 
 @include for-phone-tablet-only {
-  .app {
-    height: 140vh !important;
-    width: 144vw !important;
-  }
-
   .task {
     @include size(null, 42rem);
 
