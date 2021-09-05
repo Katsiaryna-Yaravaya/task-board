@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
@@ -26,8 +25,8 @@ const ThemeButton = ({ themeButton }) => {
   )
 }
 
+export default ThemeButton
+
 ThemeButton.propTypes = {
   themeButton: PropTypes.func
 }
-
-export default ThemeButton

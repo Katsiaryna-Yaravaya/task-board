@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
@@ -31,6 +30,9 @@ const Credential = ({
     </div>
   )
 }
+
+export default Credential
+
 Credential.propTypes = {
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
@@ -41,5 +43,3 @@ Credential.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string
 }
-
-export default Credential

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -10,26 +9,26 @@ import {
   TABLE_BOARD_ROUTE
 } from '../constants/routs'
 
+import { languageConstants } from '../constants/language'
+
 import './index.scss'
+
+const { EN, RU } = languageConstants
 
 const App = () => {
   const { i18n } = useTranslation('translation')
+
+  const isEnglishLanguage = i18n.language === EN
+
+  const handleLanguageChange = () =>
+    i18n.changeLanguage(isEnglishLanguage ? RU : EN)
 
   return (
     <BrowserRouter>
       <div className="app">
         <div className="language">
-          <button
-            className="language__button"
-            onClick={() => i18n.changeLanguage('en')}
-          >
-            English
-          </button>
-          <button
-            className="language__button"
-            onClick={() => i18n.changeLanguage('ru')}
-          >
-            Русский
+          <button className="language__button" onClick={handleLanguageChange}>
+            {isEnglishLanguage ? 'Русский' : 'English'}
           </button>
         </div>
         <Switch>

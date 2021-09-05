@@ -9,5 +9,6 @@ export { default as RegistrationButton } from './registration/registration-butto
 export { default as Advice } from './advice'
 export { default as Modal } from './modal'
 export { default as ThemeButton } from './theme-button'
+export { default as ThemeBackground } from './theme-background'
 export { default as TaskButton } from './expanded-task/task-button'
 export { default as PrivateRoute } from '../private-rout'

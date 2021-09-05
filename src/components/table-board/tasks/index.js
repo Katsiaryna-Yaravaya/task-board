@@ -1,4 +1,3 @@
-import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -41,6 +40,8 @@ const Tasks = ({
   )
 }
 
+export default Tasks
+
 Tasks.propTypes = {
   onDragOver: PropTypes.func,
   onDragLeave: PropTypes.func,
@@ -49,5 +50,3 @@ Tasks.propTypes = {
   onDrop: PropTypes.func,
   task: PropTypes.object
 }
-
-export default Tasks

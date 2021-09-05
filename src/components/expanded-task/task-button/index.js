@@ -1,6 +1,6 @@
-import React from 'react'
-import { deleteIcon, download, save } from '../../../assets'
 import PropTypes from 'prop-types'
+
+import { deleteIcon, download, save } from '../../../assets'
 
 import './index.scss'
 
@@ -22,10 +22,10 @@ const TaskButton = ({ removeTask, saveTask, id }) => (
   </div>
 )
 
+export default TaskButton
+
 TaskButton.propTypes = {
   removeTask: PropTypes.func,
   saveTask: PropTypes.func,
   id: PropTypes.string
 }
-
-export default TaskButton

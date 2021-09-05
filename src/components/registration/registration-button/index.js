@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
@@ -18,6 +17,8 @@ const RegistrationButton = ({ type, name, value, className, clickHandler }) => {
   )
 }
 
+export default RegistrationButton
+
 RegistrationButton.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string,
@@ -25,5 +26,3 @@ RegistrationButton.propTypes = {
   className: PropTypes.string,
   clickHandler: PropTypes.func
 }
-
-export default RegistrationButton

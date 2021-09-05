@@ -18,6 +18,7 @@
   "cancel":"выйти",
   "errorModal": "неверно введён пароль (недостаточно средств)",
   "credentialsErrorExists": "Пользователь уже существует",
+  "credentialsErrorPassword": "пароль больше 6 символов",
   "credentialsErrorNoExists": "Пользователь не существует",
   "credentialsErrorIncorrect": "Почта или пароль неверны",
   "credentialsErrorNotValid": "Пользователь не валиден",

@@ -1,10 +1,10 @@
-import React from 'react'
 import { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../../context/theme/theme-state'
 
 import { Modal, ThemeButton } from '../index'
-import { useDispatch, useSelector } from 'react-redux'
+
 import { updateUsers } from '../../backend/api'
 import { saveUser } from '../../redux/users/actions'
 
@@ -28,23 +28,21 @@ const ThemeBackground = () => {
   const handleThemeButton = e => {
     const themeValue = e.currentTarget.value
 
-    if (!user.theme) {
-      const userWithDefaultTheme = userCreateTheme(themeValue)
-      dispatch(saveUser(userWithDefaultTheme))
-      handleOpenModal()
-    }
-
     isTheme.change(themeValue)
     setValueTheme(themeValue)
 
     if (user.theme) {
       let isPayedTheme = user.theme.paymentTheme.includes(themeValue)
-      if (!isPayedTheme) {
-        handleOpenModal()
-      } else {
+      if (!isPayedTheme) handleOpenModal()
+      else {
         const userWithTheme = userConcatenation(user, themeValue)
         dispatch(saveUser(userWithTheme))
       }
+    } else {
+      const userWithDefaultTheme = userCreateTheme(themeValue)
+
+      dispatch(saveUser(userWithDefaultTheme))
+      handleOpenModal()
     }
   }
 
@@ -59,30 +57,26 @@ const ThemeBackground = () => {
     setIsModalInfoVisible(false)
   }, [])
 
-  const userConcatenation = (user, concat) => {
-    return {
-      ...user,
-      theme: {
-        currentTheme: concat,
-        paymentTheme: [...user.theme.paymentTheme].concat(concat)
-      }
+  const userConcatenation = (user, concat) => ({
+    ...user,
+    theme: {
+      currentTheme: concat,
+      paymentTheme: [...user.theme.paymentTheme].concat(concat)
     }
-  }
+  })
 
-  const userCreateTheme = theme => {
-    return {
-      ...user,
-      theme: {
-        currentTheme: theme,
-        paymentTheme: []
-      }
+  const userCreateTheme = theme => ({
+    ...user,
+    theme: {
+      currentTheme: theme,
+      paymentTheme: []
     }
-  }
+  })
 
   const handleButtonCancel = () => {
     handleCancel()
     !user.theme.paymentTheme.length
-      ? isTheme.change(null)
+      ? isTheme.change((user.theme.currentTheme = null))
       : isTheme.change(user.theme.currentTheme)
   }
 

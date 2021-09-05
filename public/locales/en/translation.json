@@ -18,6 +18,7 @@
   "cancel":"cancel",
   "errorModal": "password not correct (insufficient funds)",
   "credentialsErrorExists": "User already exists",
+  "credentialsErrorPassword": "password is more than 6 characters",
   "credentialsErrorNoExists": "User not exist",
   "credentialsErrorIncorrect": "Email or password are incorrect",
   "credentialsErrorNotValid": "User is not valid",

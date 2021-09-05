@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withTranslation } from 'react-i18next'
@@ -84,6 +84,11 @@ const mapDispatchToProps = dispatch => ({
 const Extended = withTranslation()(Modal)
 Extended.static = Modal.static
 
+export default compose(
+  withTranslation(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Modal)
+
 Modal.propTypes = {
   title: PropTypes.string,
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -91,8 +96,3 @@ Modal.propTypes = {
   btnSubmitTitle: PropTypes.string,
   type: PropTypes.string
 }
-
-export default compose(
-  withTranslation(),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Modal)

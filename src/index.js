@@ -1,18 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
-import './core/i18n'
+import { store, persistor } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { store, persistor } from './redux/store'
-import { ThemeState } from './context'
 import ErrorBoundary from './components/error-boundary'
 import App from './app'
 
+import { ThemeState } from './context'
+
+import './core/i18n'
+
 import './index.scss'
 
-ReactDOM.render(
+render(
   <Router>
     <ReduxProvider store={store}>
       <ErrorBoundary>

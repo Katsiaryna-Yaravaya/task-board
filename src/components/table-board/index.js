@@ -1,16 +1,16 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { Tasks, Logout, AddTask } from '../index'
+import { Tasks, Logout, AddTask, ThemeBackground } from '../index'
 
 import { updateUsers } from '../../backend/api'
-import ThemeBackground from '../theme-background'
-import { useTheme } from '../../context/theme/theme-state'
-import { isEmpty } from '../utils'
 import { logout } from '../../redux/users/actions'
+
 import { REGISTRATION } from '../../constants/routs'
+import { isEmpty } from '../utils'
+
+import { useTheme } from '../../context/theme/theme-state'
 
 import './index.scss'
 

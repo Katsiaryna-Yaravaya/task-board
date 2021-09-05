@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -7,10 +6,11 @@ import { useTranslation } from 'react-i18next'
 import { Credential, RegistrationButton } from '../index'
 
 import { DATA_REGISTRATION_FORM, isNotRequestValid } from '../utils'
-import { getUser, postUser } from '../../backend/api'
-import { saveUser } from '../../redux/users/actions'
 import { TABLE_BOARD_ROUTE } from '../../constants/routs'
 import { DEFAULT_BOARDS, SIGN_IN } from '../../constants/general'
+
+import { getUser, postUser } from '../../backend/api'
+import { saveUser } from '../../redux/users/actions'
 
 import './index.scss'
 
@@ -51,12 +51,16 @@ const Registration = () => {
 
     if (isError) return
 
-    const user = { ...credentials, ...DEFAULT_BOARDS }
+    if (password.length > 5) {
+      const user = { ...credentials, ...DEFAULT_BOARDS }
 
-    postUser(user).then(requestedUser => {
-      dispatch(saveUser(requestedUser))
-      history.push(TABLE_BOARD_ROUTE)
-    })
+      postUser(user).then(requestedUser => {
+        dispatch(saveUser(requestedUser))
+        history.push(TABLE_BOARD_ROUTE)
+      })
+    } else {
+      setCredentialsError(t('credentialsErrorPassword'))
+    }
   }
 
   const isEmailValid = ({ email }) => {

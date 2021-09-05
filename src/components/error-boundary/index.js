@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { withTranslation } from 'react-i18next'
 
 class ErrorBoundary extends Component {
@@ -21,7 +21,6 @@ class ErrorBoundary extends Component {
 
   render() {
     const { t, children } = this.props
-
     // You can render any custom fallback UI
     return this.state.hasError ? (
       <h1 className="errorBoundary">{t('errorBoundary')}</h1>

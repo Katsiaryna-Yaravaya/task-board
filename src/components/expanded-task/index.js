@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
@@ -7,9 +7,11 @@ import { useTheme } from '../../context/theme/theme-state'
 import { Advice, TaskButton } from '../index'
 
 import { TABLE_BOARD_ROUTE } from '../../constants/routs'
-import { deleteTask, savedTask } from '../../redux/users/actions'
-import { arrow } from '../../assets'
 import { KEY_DOWN_ENTER } from '../../constants/general'
+
+import { deleteTask, savedTask } from '../../redux/users/actions'
+
+import { arrow } from '../../assets'
 
 import './index.scss'
 
