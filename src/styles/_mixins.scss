@@ -14,7 +14,7 @@
   margin: $mg;
 }
 
-@mixin positionBlock($pz: absolut, $top: null, $rg: null, $bt: null, $lf: null) {
+@mixin positionBlock($pz: absolute, $top: null, $rg: null, $bt: null, $lf: null) {
   position: $pz;
   top: $top;
   right: $rg;

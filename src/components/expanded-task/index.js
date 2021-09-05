@@ -51,16 +51,13 @@ const ExpandedTask = () => {
 
   return task ? (
     <div style={theme} className="app aside">
-      <div className="task">
-        <button
-          className="arrow"
-          onClick={() => history.push(TABLE_BOARD_ROUTE)}
-        >
-          <img className="arrow__img" src={arrow} alt="" />
-        </button>
+      <button className="arrow" onClick={() => history.push(TABLE_BOARD_ROUTE)}>
+        <img className="arrow__img" src={arrow} alt="" />
+      </button>
 
+      <div className="task">
         <div className="task__title">
-          <h2>{task.title}</h2>
+          <h2 title={task.title}>{task.title}</h2>
         </div>
         <textarea
           value={value}

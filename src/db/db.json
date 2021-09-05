@@ -44,8 +44,6 @@
         "currentTheme": "dark",
         "paymentTheme": [
           "light",
-          "dark",
-          "light",
           "dark"
         ]
       }

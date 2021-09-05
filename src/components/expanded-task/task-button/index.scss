@@ -1,7 +1,7 @@
 @import '../../../styles/common';
 
 .task-block-buttons {
-  @include positionBlock(absolute, null, null, 1rem, 8rem);
+  @include positionBlock(relative, null, null, null, 5rem);
 
   &__save {
     @include changeColor(none, $lavanda);
@@ -24,6 +24,7 @@
 
   &__text {
     @include flexBlock(flex, null, flex-end);
+    margin-right: 8rem;
   }
 
   .task-button {
@@ -44,7 +45,7 @@
 
 @include for-phone-tablet-only {
   .task-block-buttons {
-    @include positionBlock(relative, null, null, auto);
+    @include positionBlock(relative);
     margin-left: -3rem;
     margin-top: 5rem;
 

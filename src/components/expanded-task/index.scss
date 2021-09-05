@@ -5,6 +5,20 @@
   background-size: auto;
 }
 
+.arrow {
+  @include size(5rem, 5rem);
+  @include positionBlock(absolute, 12rem, null, null, 8rem);
+  @include focus();
+  @include fontBorder(null, 50%);
+  @include changeColor(none, $lightBlue);
+  z-index: 1;
+  box-shadow: 0 0 16px 9px rgba(145, 180, 250, 0.94);
+
+  &__img {
+    @include size(4rem, 4rem);
+  }
+}
+
 .task {
   @include positionBlock(absolute, 10rem, null, null, 5rem);
   @include size(null, 52rem);
@@ -13,22 +27,10 @@
   @include fontBorder(null, 10px);
   box-sizing: border-box;
 
-  .arrow {
-    @include size(5rem, 5rem);
-    @include positionBlock(absolute);
-    @include focus();
-    @include fontBorder(null, 50%);
-    @include changeColor(none, $lightBlue);
-    box-shadow: 0 0 16px 9px rgba(145, 180, 250, 0.94);
-
-    &__img {
-      @include size(4rem, 4rem);
-    }
-  }
-
   &__title {
-    @include fontBorder(4rem);
-    @include size(null, 46rem);
+    @include fontBorder(2rem);
+    @include size(null, 44rem);
+    margin-left: 5rem;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -38,7 +40,7 @@
     @include size(20rem, 46rem);
     @include indent(1rem, 4rem 0);
     @include changeColor(2px solid $lightPink);
-    @include fontBorder(2.4rem, 10px);
+    @include fontBorder(2rem, 10px);
     @include focus(null, none);
     resize: none;
     overflow: overlay;
@@ -46,7 +48,7 @@
 
   &__description {
     @include fontBorder(2.4rem);
-    @include indent(null, 0 0 10rem 0);
+    @include indent(null, 0 0 8rem 0);
     @include size(11rem, 46rem);
     word-wrap: break-word;
     overflow: auto;
@@ -60,16 +62,29 @@
 
 
 @include for-tablet-portrait-up {
+  .app {
+    height: 136vh !important;
+    width: 123vw !important;
+  }
+
   .aside {
     background: none;
   }
 
+  .arrow {
+    top: 5rem;
+    left: 5rem;
+  }
+
   .task {
+    @include size(66vh);
     top: 24rem;
     bottom: auto;
+    overflow: overlay;
 
     &__title {
-      @include size(null, 30rem);
+      @include positionBlock(relative);
+      padding-left: 0;
     }
 
     &__edit {
@@ -79,20 +94,20 @@
     &__description {
       @include size(24rem);
     }
-
-    .arrow {
-      top: -12rem;
-      left: -3rem;
-    }
   }
 }
 
 @include for-phone-tablet-only {
+  .app {
+    height: 140vh !important;
+    width: 144vw !important;
+  }
+
   .task {
     @include size(null, 42rem);
 
     &__title {
-      @include size(null, 26rem);
+      @include size(null, 38rem);
     }
 
     &__edit {
@@ -101,7 +116,7 @@
     }
 
     &__description {
-      @include size(28rem, 36rem);
+      @include size(20rem, 36rem);
     }
   }
 }
