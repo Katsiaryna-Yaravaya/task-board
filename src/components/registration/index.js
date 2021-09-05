@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -5,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Credential, RegistrationButton } from '../index'
 
-import { DATA_REGISTRATION_FORM, IS_NOT_REQUEST_VALID } from '../utils'
+import { DATA_REGISTRATION_FORM, isNotRequestValid } from '../utils'
 import { getUser, postUser } from '../../backend/api'
 import { saveUser } from '../../redux/users/actions'
 import { TABLE_BOARD_ROUTE } from '../../constants/routs'
@@ -18,7 +19,7 @@ const Registration = () => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
-    amount: 3
+    amount: 4
   })
   const [credentialsError, setCredentialsError] = useState(null)
   const { email, password } = credentials
@@ -65,7 +66,7 @@ const Registration = () => {
 
   const signIn = () => {
     getUser(email).then(({ data, statusText }) => {
-      if (IS_NOT_REQUEST_VALID(statusText)) return
+      if (isNotRequestValid(statusText)) return
 
       if (!data.length) {
         setCredentialsError(t('credentialsErrorNoExists'))

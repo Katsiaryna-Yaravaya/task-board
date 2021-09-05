@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -26,14 +27,12 @@ const Table = () => {
   useEffect(() => {
     if (!isEmpty(user)) {
       setBoards(user.boards)
-      theme.change(user.theme.currentTheme)
+      if (!isEmpty(user.theme)) theme.change(user.theme.currentTheme)
     }
   }, [user, user?.boards])
 
   useEffect(() => {
-    if (boards && user) {
-      updateUsers(user.id, user).then()
-    }
+    if (boards && user) updateUsers(user.id, user).then()
   }, [boards])
 
   const dragOverHandler = e => {

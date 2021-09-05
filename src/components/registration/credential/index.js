@@ -1,14 +1,23 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PropTypes from 'prop-types'
 
 import './index.scss'
 
-const Credential = ({ required, autocomplete, type, name, value, onChange, className, label }) => {
-
+const Credential = ({
+  required,
+  autocomplete,
+  type,
+  name,
+  value,
+  onChange,
+  className,
+  label
+}) => {
   const { t } = useTranslation()
 
   return (
-    <div className='input-box'>
+    <div className="input-box">
       <input
         className={className}
         type={type}
@@ -18,11 +27,11 @@ const Credential = ({ required, autocomplete, type, name, value, onChange, class
         required={required}
         onChange={onChange}
       />
-      <label className='input-box__wrap-text'>{t(label)}</label>
+      <label className="input-box__wrap-text">{t(label)}</label>
     </div>
   )
 }
-Credential.propTypes ={
+Credential.propTypes = {
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
   type: PropTypes.string,

@@ -1,4 +1,6 @@
+import React from 'react'
 import { deleteIcon, download, save } from '../../../assets'
+import PropTypes from 'prop-types'
 
 import './index.scss'
 
@@ -19,5 +21,11 @@ const TaskButton = ({ removeTask, saveTask, id }) => (
     <p className="task-block-buttons__text">coming soon...</p>
   </div>
 )
+
+TaskButton.propTypes = {
+  removeTask: PropTypes.func,
+  saveTask: PropTypes.func,
+  id: PropTypes.string
+}
 
 export default TaskButton

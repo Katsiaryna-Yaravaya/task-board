@@ -47,7 +47,6 @@ export const BUTTON_THEME = [
   }
 ]
 
-// TODO please try to find another solution
 export const isEmpty = obj => {
   for (let key in obj) {
     return false
@@ -55,4 +54,4 @@ export const isEmpty = obj => {
   return true
 }
 
-export const IS_NOT_REQUEST_VALID = statusText => statusText !== 'OK'
+export const isNotRequestValid = statusText => statusText !== 'OK'

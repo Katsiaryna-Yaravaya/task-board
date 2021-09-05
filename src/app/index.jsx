@@ -1,3 +1,4 @@
+import React from 'react'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
